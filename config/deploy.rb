@@ -1,4 +1,4 @@
-#require 'bundler/capistrano'
+require 'bundler/capistrano'
 
 set :applicationdir, "aespm"
 set :application, "aespm"
@@ -34,7 +34,7 @@ after "deploy:bundle_gems", "deploy:restart"
 # Passenger
 namespace :deploy do
   task :bundle_gems do
-    run "cd #{deploy_to}/current && bundle install "
+#    run "cd #{deploy_to}/current && bundle install "
   end
   task :start do ; end
   task :stop do ; end
