@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AESPM</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+ <div class="second-header">
+  <ul class="dropdown">
+    <li>
+      <%= link_to "Компании", companies_path, :title => "" %>
+    </li>
+    <li>
+      <%= link_to "Формы отчетности", reporting_forms_path, :title => "" %>
+    </li>
+  </ul>
+</div>
+ <div id='content'>
+   <%= yield %>
+ </div>
+
+
+</body>
+</html>

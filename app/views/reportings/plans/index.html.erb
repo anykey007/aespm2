@@ -1,0 +1,24 @@
+<h1>Список финансовых планов</h1>
+
+<table>
+  <tr>
+    <th>Период</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reportings_plans.each do |reportings_plan| %>
+  <tr>
+    <td><%= reportings_plan.period %></td>
+    <td><%= link_to 'Просмотр', company_reportings_plan_path(params[:company_id],reportings_plan) %></td>
+    <td><%= link_to 'Редактирование', edit_company_reportings_plan_path(params[:company_id],reportings_plan) %></td>
+    <td><%= link_to 'Удаление', company_reportings_plan_path(params[:company_id],reportings_plan), confirm: 'Вы уверены?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новый', new_company_reportings_plan_path %> |
+<%= link_to 'Назад', @company %>

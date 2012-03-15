@@ -1,0 +1,2 @@
+class BalanceLine < Line
+end

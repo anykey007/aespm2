@@ -1,0 +1,2 @@
+module Reportings::PlansHelper
+end

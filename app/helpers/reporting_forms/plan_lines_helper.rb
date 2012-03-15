@@ -1,0 +1,2 @@
+module ReportingForms::PlanLinesHelper
+end

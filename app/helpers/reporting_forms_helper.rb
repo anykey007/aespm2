@@ -1,0 +1,2 @@
+module ReportingFormsHelper
+end

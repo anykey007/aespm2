@@ -1,0 +1,2 @@
+module Reportings::BalancesHelper
+end

@@ -1,0 +1,9 @@
+<h1>Формы отчетности</h1>
+<ul class="dropdown">
+  <li>
+    <%= link_to "Баланс", {:controller => "reporting_forms/balance_lines", :action => "index"}, :title => "" %>
+  </li>
+  <li>
+    <%= link_to "Финансовый план", {:controller => "reporting_forms/plan_lines", :action => "index"}, :title => "" %>
+  </li>
+</ul>

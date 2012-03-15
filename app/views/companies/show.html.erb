@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Название:</b>
+  <%= @company.name %>
+</p>
+
+
+<%= link_to 'Редактировать', edit_company_path(@company) %> |
+<%= link_to 'Назад', companies_path %>
+<h1>Отчеты компании</h1>
+<ul class="dropdown">
+  <li>
+    <%= link_to "Балансы", company_reportings_balances_path(@company), :title => "" %>
+  </li>
+  <li>
+    <%= link_to "Финансовые планы", company_reportings_plans_path(@company), :title => "" %>
+  </li>
+</ul>

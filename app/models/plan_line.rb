@@ -1,0 +1,2 @@
+class PlanLine < Line
+end

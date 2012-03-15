@@ -1,0 +1,24 @@
+<h1>Список балансов</h1>
+
+<table>
+  <tr>
+    <th>Период</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reportings_balances.each do |reportings_balance| %>
+  <tr>
+    <td><%= reportings_balance.period %></td>
+    <td><%= link_to 'Просмотр', company_reportings_balance_path(params[:company_id],reportings_balance) %></td>
+    <td><%= link_to 'Редактирование', edit_company_reportings_balance_path(params[:company_id],reportings_balance) %></td>
+    <td><%= link_to 'Удаление', company_reportings_balance_path(params[:company_id],reportings_balance), confirm: 'Вы уверены?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новый', new_company_reportings_balance_path %> |
+<%= link_to 'Назад', @company %>

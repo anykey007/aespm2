@@ -1,0 +1,37 @@
+<%= form_for [@company, @reportings_plan] do |f| %>
+  <% if @reportings_plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reportings_plan.errors.count, "error") %> prohibited this reportings_balance from being saved:</h2>
+
+      <ul>
+      <% @reportings_plan.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :period %>
+      <br/>
+      <%= select_date Date.today, :prefix => f.object_name+'[period]' %>
+    </div>
+  <div class="lines">
+  <p>Строки формы отчетности</p>
+  <table>
+    <tr>
+      <th>Строка</th>
+      <th>Код строки</th>
+      <th>По плану</th>
+      <th>Фактически</th>
+      <th>Відхилення (+, -)</th>
+      <th>Виконання (%)</th>
+    </tr>
+    <%= f.fields_for :values, @line_values do |builder| %>
+        <%= render "line_values_fields", :f => builder, :line=>builder.object.line %>
+    <% end %>
+  </table>
+</div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
