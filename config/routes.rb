@@ -1,6 +1,6 @@
 AESPM::Application.routes.draw do
 
-
+  resources :index
   namespace :reportings do resources :balances end
 
 
