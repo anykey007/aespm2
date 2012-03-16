@@ -61,7 +61,7 @@ class Reportings::PlansController < ApplicationController
     @reportings_plan = @company.plans.new(params[:reportings_plan])
     @reportings_plan.period = Date.civil(params[:reportings_plan][:period][:year].to_i, params[:reportings_plan][:period][:month].to_i, params[:reportings_plan][:period][:day].to_i)
     respond_to do |format|
-      if @reportings_plan.save && @reportings_plan.update_parent_in_values && @reportings_plan.update_total_values
+      if @reportings_plan.valid? &&  @reportings_plan.save_and_update_parents
         format.html { redirect_to company_reportings_plan_path(params[:company_id],@reportings_plan), notice: 'Plan was successfully created.' }
         format.json { render json: @reportings_plan, status: :created, location: @reportings_plan }
       else
@@ -79,7 +79,7 @@ class Reportings::PlansController < ApplicationController
     @reportings_plan.period = Date.civil(params[:reportings_plan][:period][:year].to_i, params[:reportings_plan][:period][:month].to_i, params[:reportings_plan][:period][:day].to_i)
     params[:reportings_plan][:period]=@reportings_plan.period
     respond_to do |format|
-      if @reportings_plan.update_attributes_and_update_parents(params[:reportings_plan])
+      if @reportings_plan.valid? && @reportings_plan.update_attributes_and_update_parents(params[:reportings_plan])
         format.html { redirect_to company_reportings_plan_path(params[:company_id],@reportings_plan), notice: 'Plan was successfully updated.' }
         format.json { head :no_content }
       else

@@ -3,7 +3,6 @@ class Value < ActiveRecord::Base
    belongs_to :line, :class_name => "Line", :foreign_key => "line_id"
    scope :childs, lambda { |child_ids| joins(:line).where('lines.id in (?)', child_ids) }
    scope :totals, joins(:line).where('lines.total=1')
-#   scope :parent, lambda { |child_id| joins(:line).where('lines.parentid in (?)', child_id) }
 
   def parent
      self.class.where('line_id = ? and report_id=?',line.parent,report_id).first

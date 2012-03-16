@@ -7,7 +7,7 @@ class Report < ActiveRecord::Base
 
 
   def save_and_update_parents
-    self.save
+    self.save!
     self.update_parent_in_values
     self.update_total_values
   end

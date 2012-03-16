@@ -64,7 +64,7 @@ class Reportings::BalancesController < ApplicationController
     @reportings_balance = @company.balances.new(params[:reportings_balance])
     @reportings_balance.period = Date.civil(params[:reportings_balance][:period][:year].to_i, params[:reportings_balance][:period][:month].to_i, params[:reportings_balance][:period][:day].to_i)
     respond_to do |format|
-      if @reportings_balance.save && @reportings_balance.update_parent_in_values && @reportings_balance.update_total_values
+      if @reportings_balance.valid? && @reportings_balance.save_and_update_parents
         format.html { redirect_to company_reportings_balance_path(params[:company_id],@reportings_balance), notice: 'Balance was successfully created.' }
         format.json { render json: @reportings_balance, status: :created, location: @reportings_balance }
       else
@@ -82,7 +82,7 @@ class Reportings::BalancesController < ApplicationController
     @reportings_balance.period = Date.civil(params[:reportings_balance][:period][:year].to_i, params[:reportings_balance][:period][:month].to_i, params[:reportings_balance][:period][:day].to_i)
     params[:reportings_balance][:period]=@reportings_balance.period
     respond_to do |format|
-      if @reportings_balance.update_attributes(params[:reportings_balance]) && @reportings_balance.update_parent_in_values && @reportings_balance.update_total_values
+      if @reportings_balance.valid? && @reportings_balance.update_attributes_and_update_parents(params[:reportings_balance])
         format.html { redirect_to company_reportings_balance_path(params[:company_id],@reportings_balance), notice: 'Balance was successfully updated.' }
         format.json { head :no_content }
       else
