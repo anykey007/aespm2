@@ -6,9 +6,7 @@ class Line < ActiveRecord::Base
 
   scope :without_line, lambda { |line_id| where("id <> ? and total <> 1", line_id) }
 
-#  def self.all
-#    self.order("code desc").all
-#  end
+
   validates_presence_of :name
 
  def disabled?
