@@ -2,7 +2,7 @@ class Reportings::PlansController < ApplicationController
   # GET /reportings/plans
   # GET /reportings/plans.json
   def index
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_plans = @company.plans.all
 
     respond_to do |format|
@@ -14,7 +14,7 @@ class Reportings::PlansController < ApplicationController
   # GET /reportings/plans/1
   # GET /reportings/plans/1.json
   def show
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_plan = @company.plans.find(params[:id])
 
     respond_to do |format|
@@ -26,7 +26,7 @@ class Reportings::PlansController < ApplicationController
   # GET /reportings/plans/new
   # GET /reportings/plans/new.json
   def new
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_plan = @company.plans.new
     @lines = @reportings_plan.lines
     @line_values = []
@@ -41,7 +41,7 @@ class Reportings::PlansController < ApplicationController
 
   # GET /reportings/plans/1/edit
   def edit
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_plan = @company.plans.find(params[:id])
     @lines = @reportings_plan.lines
     existing_line_values = @reportings_plan.values
@@ -57,7 +57,7 @@ class Reportings::PlansController < ApplicationController
   # POST /reportings/plans
   # POST /reportings/plans.json
   def create
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_plan = @company.plans.new(params[:reportings_plan])
     @reportings_plan.period = Date.civil(params[:reportings_plan][:period][:year].to_i, params[:reportings_plan][:period][:month].to_i, params[:reportings_plan][:period][:day].to_i)
     respond_to do |format|
@@ -74,7 +74,7 @@ class Reportings::PlansController < ApplicationController
   # PUT /reportings/plans/1
   # PUT /reportings/plans/1.json
   def update
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_plan = @company.plans.find(params[:id])
     @reportings_plan.period = Date.civil(params[:reportings_plan][:period][:year].to_i, params[:reportings_plan][:period][:month].to_i, params[:reportings_plan][:period][:day].to_i)
     params[:reportings_plan][:period]=@reportings_plan.period
@@ -92,7 +92,7 @@ class Reportings::PlansController < ApplicationController
   # DELETE /reportings/plans/1
   # DELETE /reportings/plans/1.json
   def destroy
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_plan = @company.plans.find(params[:id])
     @reportings_plan.destroy
 

@@ -2,7 +2,7 @@ class Reportings::BalancesController < ApplicationController
   # GET /reportings/balances
   # GET /reportings/balances.json
   def index
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_balances = @company.balances.all
 
     respond_to do |format|
@@ -15,7 +15,7 @@ class Reportings::BalancesController < ApplicationController
   # GET /reportings/balances/1.json
   def show
 
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_balance = @company.balances.find(params[:id])
 #    @reportings_balance = Reportings::Balance.find(params[:id])
 
@@ -28,7 +28,7 @@ class Reportings::BalancesController < ApplicationController
   # GET /reportings/balances/new
   # GET /reportings/balances/new.json
   def new
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_balance = @company.balances.new
     @lines = @reportings_balance.lines
     @line_values = []
@@ -44,7 +44,7 @@ class Reportings::BalancesController < ApplicationController
 
   # GET /reportings/balances/1/edit
   def edit
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_balance = @company.balances.find(params[:id])
     @lines = @reportings_balance.lines
     existing_line_values = @reportings_balance.values
@@ -60,7 +60,7 @@ class Reportings::BalancesController < ApplicationController
   # POST /reportings/balances
   # POST /reportings/balances.json
   def create
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_balance = @company.balances.new(params[:reportings_balance])
     @reportings_balance.period = Date.civil(params[:reportings_balance][:period][:year].to_i, params[:reportings_balance][:period][:month].to_i, params[:reportings_balance][:period][:day].to_i)
     respond_to do |format|
@@ -77,7 +77,7 @@ class Reportings::BalancesController < ApplicationController
   # PUT /reportings/balances/1
   # PUT /reportings/balances/1.json
   def update
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_balance = @company.balances.find(params[:id])
     @reportings_balance.period = Date.civil(params[:reportings_balance][:period][:year].to_i, params[:reportings_balance][:period][:month].to_i, params[:reportings_balance][:period][:day].to_i)
     params[:reportings_balance][:period]=@reportings_balance.period
@@ -95,7 +95,7 @@ class Reportings::BalancesController < ApplicationController
   # DELETE /reportings/balances/1
   # DELETE /reportings/balances/1.json
   def destroy
-    @company = Company.find(params[:company_id])
+    @company = current_user.companies.find(params[:company_id])
     @reportings_balance = @company.balances.find(params[:id])
     @reportings_balance.destroy
 

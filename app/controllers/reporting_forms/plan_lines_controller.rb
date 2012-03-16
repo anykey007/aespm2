@@ -1,4 +1,5 @@
 class ReportingForms::PlanLinesController < ApplicationController
+  before_filter :authenticate_admin
   def index
     @lines = PlanLine.all
 

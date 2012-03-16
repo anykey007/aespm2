@@ -2,24 +2,36 @@
 <html>
 <head>
   <title>AESPM</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
- <div class="second-header">
+<div class="second-header">
   <ul class="dropdown">
     <li>
       <%= link_to "Компании", companies_path, :title => "" %>
     </li>
-    <li>
-      <%= link_to "Формы отчетности", reporting_forms_path, :title => "" %>
-    </li>
+    <% if user_signed_in? && current_user.admin? %>
+        <li>
+          <%= link_to "Формы отчетности", reporting_forms_path, :title => "" %>
+        </li>
+    <% end %>
   </ul>
 </div>
- <div id='content'>
-   <%= yield %>
- </div>
+<div id="user_nav">
+  <% if user_signed_in? %>
+      Вы вошли как <span class="green"><%= current_user.name %></span> </br>
+      <%= link_to "Выйти", destroy_user_session_path, :method => :delete, :class=>"orange" %>
+      <br/>
+  <% else %>
+      <%= link_to "Войти", new_user_session_path, :title => "Sign in", :class=>"green" %> </br>
+      <%= link_to "Зарегистрироваться", new_user_registration_path, :title => "Sing out", :onclick =>"return get_shadow(this);" %>
+  <% end %>  <br/>
+</div>
+<div id='content'>
+  <%= yield %>
+</div>
 
 
 </body>

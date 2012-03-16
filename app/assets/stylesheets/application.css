@@ -34,3 +34,16 @@ a {
 }a:hover {
     text-decoration: underline;
 }
+
+#user_nav
+{
+    position:absolute;
+    right:30px;
+    top:20px;
+    text-align:right;
+}
+.green
+{
+    font-size:14px;
+    color:green;
+}

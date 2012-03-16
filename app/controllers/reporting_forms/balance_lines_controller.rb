@@ -1,4 +1,5 @@
 class ReportingForms::BalanceLinesController < ApplicationController
+  before_filter :authenticate_admin
   def index
     @lines = BalanceLine.all
 
