@@ -47,3 +47,44 @@ a {
     font-size:14px;
     color:green;
 }
+.part
+{
+    font-size:16px;
+}
+.report table, td{
+    /*border: 1px gray solid;*/
+	border-top: 1px;
+	border-right: 1px gray Solid;
+	border-left: 1px gray Solid;
+	border-bottom: 1px gray dotted;
+	border-spacing: 0px;
+	border-collapse: collapse;
+    table-layout: fixed;
+    line-height:10px;
+}
+
+td.right-content{
+    border-color: white;
+    width: 150px;
+}
+.report table th{
+    background-color: #f79904;
+    color: white;
+    font-size: 13px;
+    font-variant: normal;
+}
+.report table th a:visited{
+    color: white;
+}
+.report table th a:hover{
+    color: black;
+    text-decoration: underline;
+}
+.report table th a{
+    color: white;
+    font-size: 13px;
+    font-variant: normal;
+    text-decoration: none;
+}
+
+

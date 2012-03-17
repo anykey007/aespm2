@@ -27,15 +27,10 @@ set :default_environment, {
   'PATH' => "/usr/share/ruby-rvm/gems/ruby-1.9.2-p290/bin:/usr/share/ruby-rvm/gems/ruby-1.9.2-p290@global/bin:/usr/share/ruby-rvm/rubies/ruby-1.9.2-p290/bin:/usr/share/ruby-rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:"
 }
 
-after "deploy", "deploy:bundle_gems"
-after "deploy:bundle_gems", "deploy:restart"
-
+after "deploy", "deploy:restart"
 
 # Passenger
 namespace :deploy do
-  task :bundle_gems do
-#    run "cd #{deploy_to}/current && bundle install "
-  end
   task :start do ; end
   task :stop do ; end
   task :restart, :roles => :app, :except => { :no_release => true } do

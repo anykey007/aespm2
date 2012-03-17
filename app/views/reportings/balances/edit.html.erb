@@ -1,6 +1,6 @@
-<h1>Баланс на <%= @reportings_balance.period.strftime("%d.%m.%Y") %> </h1>
+<h1>Баланс на <%= @report.period.strftime("%d.%m.%Y") %> </h1>
 
 <%= render 'form' %>
 
-<%= link_to 'Просмотр', company_reportings_balance_path(params[:company_id],@reportings_balance) %> |
+<%= link_to 'Просмотр', company_reportings_balance_path(params[:company_id],@report) %> |
 <%= link_to 'Назад', company_reportings_balances_path %>

@@ -14,9 +14,9 @@
   <tr>
     <td><%= line.name_for_select_tag %></td>
     <td><%= line.code %></td>
-    <td><%= link_to 'Show', [:reporting_forms,line] %></td>
+    <td><%= link_to 'Show', line %></td>
     <td><%= link_to 'Edit', edit_reporting_forms_plan_line_path(line) %></td>
-    <td><%= link_to 'Destroy', [:reporting_forms,line], confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', line, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>

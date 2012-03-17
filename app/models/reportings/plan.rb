@@ -1,5 +1,5 @@
 class Reportings::Plan < Report
   def lines
-     PlanLine.all
+     ReportingForms::PlanLine.all
   end
 end

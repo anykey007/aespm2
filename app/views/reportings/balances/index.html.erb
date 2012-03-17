@@ -8,7 +8,7 @@
     <th></th>
   </tr>
 
-<% @reportings_balances.each do |reportings_balance| %>
+<% @reportings.each do |reportings_balance| %>
   <tr>
     <td><%= reportings_balance.period %></td>
     <td><%= link_to 'Просмотр', company_reportings_balance_path(params[:company_id],reportings_balance) %></td>

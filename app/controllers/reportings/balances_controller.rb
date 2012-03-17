@@ -3,11 +3,11 @@ class Reportings::BalancesController < ApplicationController
   # GET /reportings/balances.json
   def index
     @company = current_user.companies.find(params[:company_id])
-    @reportings_balances = @company.balances.all
+    @reportings = @company.balances.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @reportings_balances }
+      format.json { render json: @reportings }
     end
   end
 
@@ -16,12 +16,12 @@ class Reportings::BalancesController < ApplicationController
   def show
 
     @company = current_user.companies.find(params[:company_id])
-    @reportings_balance = @company.balances.find(params[:id])
+    @report = @company.balances.find(params[:id])
 #    @reportings_balance = Reportings::Balance.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @reportings_balance }
+      format.json { render json: @report }
     end
   end
 
@@ -29,30 +29,30 @@ class Reportings::BalancesController < ApplicationController
   # GET /reportings/balances/new.json
   def new
     @company = current_user.companies.find(params[:company_id])
-    @reportings_balance = @company.balances.new
-    @lines = @reportings_balance.lines
+    @report = @company.balances.new
+    @lines = @report.lines
     @line_values = []
     @lines.each do |line|
-      @line_values<<@reportings_balance.values.build(:line_id=>line.id)
+      @line_values<<@report.values.build(:line_id=>line.id)
     end
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @reportings_balance }
+      format.json { render json: @report }
     end
   end
 
   # GET /reportings/balances/1/edit
   def edit
     @company = current_user.companies.find(params[:company_id])
-    @reportings_balance = @company.balances.find(params[:id])
-    @lines = @reportings_balance.lines
-    existing_line_values = @reportings_balance.values
+    @report = @company.balances.find(params[:id])
+    @lines = @report.lines
+    existing_line_values = @report.values
     existing_line_ids = existing_line_values.map {|rec| rec.line_id}
     @line_values = existing_line_values
     @lines.each do |line|
       if !existing_line_ids.include?(line.id)
-         @line_values<<@reportings_balance.values.build(:line_id=>line.id)
+         @line_values<<@report.values.build(:line_id=>line.id)
       end
     end
   end
@@ -61,15 +61,15 @@ class Reportings::BalancesController < ApplicationController
   # POST /reportings/balances.json
   def create
     @company = current_user.companies.find(params[:company_id])
-    @reportings_balance = @company.balances.new(params[:reportings_balance])
-    @reportings_balance.period = Date.civil(params[:reportings_balance][:period][:year].to_i, params[:reportings_balance][:period][:month].to_i, params[:reportings_balance][:period][:day].to_i)
+    @report = @company.balances.new(params[:reportings_balance])
+    @report.period = Date.civil(params[:period][:year].to_i, params[:period][:month].to_i, params[:period][:day].to_i)
     respond_to do |format|
-      if @reportings_balance.valid? && @reportings_balance.save_and_update_parents
-        format.html { redirect_to company_reportings_balance_path(params[:company_id],@reportings_balance), notice: 'Balance was successfully created.' }
-        format.json { render json: @reportings_balance, status: :created, location: @reportings_balance }
+      if @report.valid? && @report.save_and_update_parents
+        format.html { redirect_to company_reportings_balance_path(params[:company_id],@report), notice: 'Balance was successfully created.' }
+        format.json { render json: @report, status: :created, location: @report }
       else
         format.html { render action: "new" }
-        format.json { render json: @reportings_balance.errors, status: :unprocessable_entity }
+        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -78,16 +78,16 @@ class Reportings::BalancesController < ApplicationController
   # PUT /reportings/balances/1.json
   def update
     @company = current_user.companies.find(params[:company_id])
-    @reportings_balance = @company.balances.find(params[:id])
-    @reportings_balance.period = Date.civil(params[:reportings_balance][:period][:year].to_i, params[:reportings_balance][:period][:month].to_i, params[:reportings_balance][:period][:day].to_i)
-    params[:reportings_balance][:period]=@reportings_balance.period
+    @report = @company.balances.find(params[:id])
+    @report.period = Date.civil(params[:period][:year].to_i, params[:period][:month].to_i, params[:period][:day].to_i)
+    params[:reportings_balance][:period]=@report.period
     respond_to do |format|
-      if @reportings_balance.valid? && @reportings_balance.update_attributes_and_update_parents(params[:reportings_balance])
-        format.html { redirect_to company_reportings_balance_path(params[:company_id],@reportings_balance), notice: 'Balance was successfully updated.' }
+      if @report.valid? && @report.update_attributes_and_update_parents(params[:reportings_balance])
+        format.html { redirect_to company_reportings_balance_path(params[:company_id],@report), notice: 'Balance was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @reportings_balance.errors, status: :unprocessable_entity }
+        format.json { render json: @report.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -96,8 +96,8 @@ class Reportings::BalancesController < ApplicationController
   # DELETE /reportings/balances/1.json
   def destroy
     @company = current_user.companies.find(params[:company_id])
-    @reportings_balance = @company.balances.find(params[:id])
-    @reportings_balance.destroy
+    @report = @company.balances.find(params[:id])
+    @report.destroy
 
     respond_to do |format|
       format.html { redirect_to company_reportings_balances_url }

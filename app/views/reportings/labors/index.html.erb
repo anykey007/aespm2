@@ -1,0 +1,24 @@
+<h1>Список звітів з праці</h1>
+
+<table>
+  <tr>
+    <th>Период</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reportings.each do |reportings_labor| %>
+  <tr>
+    <td><%= reportings_labor.period %></td>
+    <td><%= link_to 'Просмотр', company_reportings_labor_path(params[:company_id],reportings_labor) %></td>
+    <td><%= link_to 'Редактирование', edit_company_reportings_labor_path(params[:company_id],reportings_labor) %></td>
+    <td><%= link_to 'Удаление', company_reportings_labor_path(params[:company_id],reportings_labor), confirm: 'Вы уверены?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новий звіт', new_company_reportings_labor_path %> |
+<%= link_to 'Назад', @company %>

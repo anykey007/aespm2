@@ -1,0 +1,48 @@
+<%= form_for(@line) do |f| %>
+    <% if @line.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@line.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+          <ul>
+            <% @line.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :name %>
+      <br/>
+      <%= f.text_field :name, :size=>100 %>
+    </div>
+    <div class="field">
+      <%= f.label :code %>
+      <br/>
+      <%= f.text_field :code %>
+    </div>
+    <div class="field">
+      <%= f.label :parent_id %>
+      <br/>
+      <%=
+          collection_select(f.object_name, :parent_id, @lines, :id, :name_for_select_tag, {:prompt => 'не выбрано', :selected => @line.parent_id}, :style=>"width:200px;")
+      %>
+    </div>
+    <div class="field">
+      <%= f.label :total, 'Суммирующий' %>
+      <br/>
+      <%= f.check_box :total %>
+    </div>
+    <div class="field">
+      <%= f.label :sign, 'Знак результата' %>
+      <br/>
+      <%=
+          signs = {'+' => 'plus', '-' => 'minus'}
+          select_tag (f.object_name+"[sign]").to_s, options_for_select([ "plus", "minus"], @line.sign)
+      %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

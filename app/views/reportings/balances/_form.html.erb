@@ -1,10 +1,10 @@
-<%= form_for [@company, @reportings_balance] do |f| %>
-  <% if @reportings_balance.errors.any? %>
+<%= form_for [@company, @report] do |f| %>
+  <% if @report.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@reportings_balance.errors.count, "error") %> prohibited this reportings_balance from being saved:</h2>
+      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this reportings_balance from being saved:</h2>
 
       <ul>
-      <% @reportings_balance.errors.full_messages.each do |msg| %>
+      <% @report.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -13,11 +13,11 @@
     <div class="field">
       <%= f.label :period %>
       <br/>
-      <%= select_date Date.today, :prefix => f.object_name+'[period]' %>
+      <%= select_date Date.today, :prefix => :period %>
     </div>
   <div class="lines">
   <p>Строки формы отчетности</p>
-  <table>
+  <table class="report">
     <tr>
       <th>Строка</th>
       <th>Код строки</th>

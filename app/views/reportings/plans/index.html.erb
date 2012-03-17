@@ -8,7 +8,7 @@
     <th></th>
   </tr>
 
-<% @reportings_plans.each do |reportings_plan| %>
+<% @reportings.each do |reportings_plan| %>
   <tr>
     <td><%= reportings_plan.period %></td>
     <td><%= link_to 'Просмотр', company_reportings_plan_path(params[:company_id],reportings_plan) %></td>

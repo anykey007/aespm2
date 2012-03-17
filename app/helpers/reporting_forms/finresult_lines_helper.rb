@@ -1,0 +1,2 @@
+module ReportingForms::FinresultLinesHelper
+end

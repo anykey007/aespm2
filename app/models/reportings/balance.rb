@@ -1,5 +1,5 @@
 class Reportings::Balance < Report
   def lines
-     BalanceLine.all
+     ReportingForms::BalanceLine.all
   end
 end

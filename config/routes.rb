@@ -3,12 +3,9 @@ AESPM::Application.routes.draw do
   devise_for :users
 
   resources :index
-#  namespace :reportings do resources :balances end
-
-
 
   namespace :reporting_forms do
-    resources :balance_lines, :plan_lines
+    resources :balance_lines, :plan_lines, :labor_lines, :finresult_lines
   end
 
   resources :reporting_forms
@@ -19,6 +16,8 @@ AESPM::Application.routes.draw do
     namespace :reportings do
       resources :balances
       resources :plans
+      resources :labors
+      resources :finresults
     end
   end
 

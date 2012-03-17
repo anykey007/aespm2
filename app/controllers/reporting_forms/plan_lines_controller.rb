@@ -1,7 +1,7 @@
 class ReportingForms::PlanLinesController < ApplicationController
   before_filter :authenticate_admin
   def index
-    @lines = PlanLine.all
+    @lines = ReportingForms::PlanLine.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,7 +10,7 @@ class ReportingForms::PlanLinesController < ApplicationController
   end
 
   def show
-    @line = PlanLine.find(params[:id])
+    @line = ReportingForms::PlanLine.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,8 +19,9 @@ class ReportingForms::PlanLinesController < ApplicationController
   end
 
   def new
-    @line = PlanLine.new
-    @lines =  PlanLine.all
+    @line = ReportingForms::PlanLine.new
+    @lines =[]
+    @lines =  ReportingForms::PlanLine.all
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @line }
@@ -28,16 +29,16 @@ class ReportingForms::PlanLinesController < ApplicationController
   end
 
   def edit
-    @line = PlanLine.find(params[:id])
-    @lines =  PlanLine.without_line(params[:id])
+    @line = ReportingForms::PlanLine.find(params[:id])
+    @lines =  ReportingForms::PlanLine.without_line(params[:id])
   end
 
   def create
-    @line = PlanLine.new(params[:plan_line])
+    @line = ReportingForms::PlanLine.new(params[:reporting_forms_plan_line])
 
     respond_to do |format|
       if @line.save
-        format.html { redirect_to [:reporting_forms,@line], notice: 'Line was successfully created.' }
+        format.html { redirect_to @line, notice: 'Line was successfully created.' }
         format.json { render json: @line, status: :created, location: @company }
       else
         format.html { render action: "new" }
@@ -47,11 +48,11 @@ class ReportingForms::PlanLinesController < ApplicationController
   end
 
   def update
-     @line = PlanLine.find(params[:id])
+     @line = ReportingForms::PlanLine.find(params[:id])
 
     respond_to do |format|
-      if @line.update_attributes(params[:plan_line])
-        format.html { redirect_to [:reporting_forms,@line], notice: 'Line was successfully updated.' }
+      if @line.update_attributes(params[:reporting_forms_plan_line])
+        format.html { redirect_to @line, notice: 'Line was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -61,7 +62,7 @@ class ReportingForms::PlanLinesController < ApplicationController
   end
 
   def destroy
-    @line = PlanLine.find(params[:id])
+    @line = ReportingForms::PlanLine.find(params[:id])
     @line.destroy
 
     respond_to do |format|

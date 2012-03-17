@@ -1,4 +1,4 @@
-<%= form_for [:reporting_forms, @line] do |f| %>
+<%= form_for(@line) do |f| %>
     <% if @line.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@line.errors.count, "error") %> prohibited this company from being saved:</h2>
