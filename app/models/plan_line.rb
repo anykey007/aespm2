@@ -1,2 +1,0 @@
-class PlanLine < Line
-end
