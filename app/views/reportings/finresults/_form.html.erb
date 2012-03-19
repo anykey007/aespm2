@@ -13,7 +13,7 @@
      <div class="field">
       <%= f.label :period %>
       <br/>
-      <%= select_date Date.today, :prefix => :period %>
+      <%= select_date @report.period, :prefix => :period %>
     </div>
   <div class="lines">
   <p>Строки формы отчетности</p>

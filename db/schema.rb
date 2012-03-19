@@ -11,13 +11,31 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120316173057) do
+ActiveRecord::Schema.define(:version => 20120319184359) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
     t.integer  "user_id"
+    t.string   "EDRPOY"
+    t.float    "state_share"
+    t.integer  "state_share_count"
+    t.string   "SF"
+    t.integer  "region"
+    t.integer  "management"
+    t.string   "governing_body"
+    t.string   "in_the_management"
+    t.string   "type_of_business_entity"
+    t.boolean  "bankruptcy"
+    t.string   "form_of_shares"
+    t.string   "strategist"
+    t.string   "address"
+    t.float    "nominal_value_of_shares"
+    t.float    "nominal_value_of_all_shares"
+    t.string   "EDRPOY2"
+    t.string   "KVED"
+    t.string   "mailbox_index"
   end
 
   create_table "lines", :force => true do |t|

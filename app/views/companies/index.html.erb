@@ -1,7 +1,8 @@
-<h1>Компании</h1>
+<h1>Предприятия</h1>
 
 <table>
   <tr>
+    <th>ЕДРПОУ</th>
     <th>Название</th>
     <th></th>
     <th></th>
@@ -10,6 +11,7 @@
 
 <% @companies.each do |company| %>
   <tr>
+     <td><%= company.EDRPOY %></td>
     <td><%= company.name %></td>
     <td><%= link_to 'Просмотреть', company %></td>
     <td><%= link_to 'Редактировать', edit_company_path(company) %></td>
@@ -20,4 +22,4 @@
 
 <br />
 
-<%= link_to 'Добавить компанию', new_company_path %>
+<%= link_to 'Добавить предприятие', new_company_path %>

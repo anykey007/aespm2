@@ -37,7 +37,7 @@ class Line < ActiveRecord::Base
 
   def name_for_select_tag
     lines=parents_count
-    if total
+    if total && lines>1
       lines=lines-1
     end
     "--"*lines+name

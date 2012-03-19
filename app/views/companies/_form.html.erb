@@ -1,21 +1,37 @@
 <%= form_for(@company) do |f| %>
-  <% if @company.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
+    <% if @company.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@company.errors.count, "error") %> prohibited this company from being saved:</h2>
 
-      <ul>
-      <% @company.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+          <ul>
+            <% @company.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :EDRPOY, 'ЕДРПОУ' %>
+      <br/>
+      <%= f.text_field :EDRPOY %>
     </div>
-  <% end %>
+    <div class="field">
+      <%= f.label :name, 'Название' %>
+      <br/>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :state_share, 'Держчастка,%' %>
+      <br/>
+      <%= f.text_field :state_share %>
+    </div>
+    <div class="field">
+      <%= f.label :state_share_count, 'Держчастка, кількість акцій' %>
+      <br/>
+      <%= f.text_field :state_share_count %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name, 'Название' %><br />
-    <%= f.text_field :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

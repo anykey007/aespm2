@@ -29,6 +29,7 @@ class Reportings::FinresultsController < ApplicationController
 
       @company = current_user.companies.find(params[:company_id])
       @report = @company.finresults.new
+      @report.period = DateTime.current
       @lines = @report.lines
       @line_values = []
       @lines.each do |line|
