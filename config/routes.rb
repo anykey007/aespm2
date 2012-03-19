@@ -18,7 +18,9 @@ AESPM::Application.routes.draw do
       resources :plans
       resources :labors
       resources :finresults
+
     end
+    match 'performance/index' => 'performance#index', :via => [:get,:post]
   end
 
   # The priority is based upon order of creation:

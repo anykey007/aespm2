@@ -1,4 +1,5 @@
 class ReportingForms::LaborLinesController < ApplicationController
+    before_filter :authenticate_admin
   # GET /reporting_forms/labor_lines
   # GET /reporting_forms/labor_lines.json
   def index
