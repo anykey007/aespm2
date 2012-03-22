@@ -3,6 +3,10 @@ class Reportings::Balance < Report
     ReportingForms::BalanceLine.all
   end
 
+  def total_lines
+    ReportingForms::BalanceLine.where('total=1')
+  end
+
   attr_accessor :code_230, :code_240, :code_260, :code_280, :code_380, :code_480, :code_620
 
 

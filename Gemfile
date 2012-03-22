@@ -9,11 +9,13 @@ gem 'mysql2'
 gem 'capistrano-ext'
 gem 'capistrano'
 gem 'devise'
+gem "prawn"
+#gem 'wicked_pdf'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
+  gem 'sass-rails',   '3.2.4'
+  gem 'coffee-rails', '3.2.2'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
    gem 'therubyracer'
@@ -24,9 +26,9 @@ end
 gem 'jquery-rails'
 
 gem "nifty-generators", :group => :development
-gem "rspec-rails", :group => [:test, :development]
+gem "rspec-rails", "2.8.1", :group => [:test, :development]
 group :test do
-  gem "factory_girl_rails"
+  gem "factory_girl_rails", "1.7.0"
   gem "capybara"
   gem "guard-rspec"
 end

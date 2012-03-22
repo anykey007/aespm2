@@ -8,7 +8,7 @@ class Performance
     @plan = @company.plans.order('period desc').where('period <= ?',@period).limit(1).first
   end
 
-  attr_accessor :company, :period, :balance, :labor
+  attr_accessor :company, :period, :balance, :labor, :finresult, :plan
 
   # Некомерційні показники
 
@@ -111,7 +111,7 @@ class Performance
   # Коефіцієнт загальної ліквідності
   # форма № 1, рядки 260, 480, 620
   def ratio_of_total_liquidity
-    (!@balanc.nil? && !@balance.code_620.nil? && !@balance.code_260.nil? && !@balance.code_480.nil? && (@balance.code_620.value2+@balance.code_480.value2).nonzero?) ?
+    (!@balance.nil? && !@balance.code_620.nil? && !@balance.code_260.nil? && !@balance.code_480.nil? && (@balance.code_620.value2+@balance.code_480.value2).nonzero?) ?
       (@balance.code_260.value2)/(@balance.code_480.value2+@balance.code_620.value2) : nil
   end
 
@@ -141,7 +141,7 @@ class Performance
   # форма № 2, рядок 220 (225), форма № 1, рядок 280, графи 3, 4
   # Більше 0
   def ratio_return_on_assets
-     (@balance && net_profit_or_loss && (@balance.code_280.value1+@balance.code_280.value2).nonzero?) ?
+     (!@balance.nil? && net_profit_or_loss && @balance.code_280 && (@balance.code_280.value1+@balance.code_280.value2).nonzero?) ?
          net_profit_or_loss/((@balance.code_280.value1+@balance.code_280.value2)/2) : nil
   end
 

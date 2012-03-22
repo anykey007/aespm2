@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Report < ActiveRecord::Base
+
   belongs_to :company
   has_many :values, :class_name => "Value", :dependent => :destroy
   accepts_nested_attributes_for :values, :allow_destroy => true

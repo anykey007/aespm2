@@ -34,6 +34,25 @@ a {
 }a:hover {
     text-decoration: underline;
 }
+div.main-header{
+    width: 90%;
+    text-align: left;
+    padding-top: 0px;
+    padding-left: 100px;
+    position: relative;
+    margin: 0px;
+}
+.main-header li{
+    font-size: 18px;
+    display: inline;
+    list-style-type: none;
+    padding-right: 30px;
+}
+
+.field{
+    /*max-width:60%;*/
+  /*background-color: #D1D8F6;*/
+}
 
 #user_nav
 {
@@ -51,8 +70,26 @@ a {
 {
     font-size:16px;
 }
-.report table, td{
-    /*border: 1px gray solid;*/
+
+table {
+  border: solid 1px #666;
+  border-collapse: collapse;
+  margin: 10px 0;
+}
+
+table th {
+  font-size: 10px;
+  color: #FFF;
+  background-color: #404C99;
+  padding: 4px 8px;
+  padding-bottom: 4px;
+  text-align: left;
+}
+
+table td {
+  padding: 4px 8px;
+
+    border: 1px gray solid;
 	border-top: 1px;
 	border-right: 1px gray Solid;
 	border-left: 1px gray Solid;
@@ -63,28 +100,32 @@ a {
     line-height:10px;
 }
 
-td.right-content{
-    border-color: white;
-    width: 150px;
+table .even td {
+  background-color: #E3E6FF;
 }
-.report table th{
-    background-color: #f79904;
-    color: white;
-    font-size: 13px;
-    font-variant: normal;
+
+table .odd td {
+  background-color: #D1D8F6;
 }
-.report table th a:visited{
-    color: white;
+
+#line_items {
+    width:100%;
 }
-.report table th a:hover{
-    color: black;
-    text-decoration: underline;
+
+
+
+#line_items td {
+    width:100%;
 }
-.report table th a{
-    color: white;
-    font-size: 13px;
-    font-variant: normal;
-    text-decoration: none;
+
+
+table.company{
+ width:100%;
+ 	border-top: 1px gray Solid;
+	border-right: 1px gray Solid;
+	border-left: 1px gray Solid;
+	border-bottom: 1px gray Solid;
 }
+
 
 

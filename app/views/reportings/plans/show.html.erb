@@ -1,5 +1,35 @@
 <p id="notice"><%= notice %></p>
+<%= link_to 'Редагувати', edit_company_reportings_plan_path(params[:company_id], @report) %> |
+<%= link_to 'Зберегти в PDF', {:controller => "reportings/plans", :action => "download_pdf", :company_id=>@company.id, :id=>@report.id}, :title => "Экспорт в CSV таблицы преподавателей" %> |
+<%= link_to 'Назад', company_reportings_plans_path %>
+</br>
+<div id="report_content" style="width:95%;">
+  </br>
+  <h3>Підприємство <%= @company.name %> </h3>
 
-
-<%= link_to 'Редактировать', edit_company_reportings_plan_path(params[:company_id],@report) %> |
+  <h1 style="text-align:center;">Фінансовий план на <%= @report.period.strftime("%d.%m.%Y") %> </h1>
+  </br>
+  <table id="line_items">
+    <tr>
+      <th>Стаття</th>
+      <th>Код рядка</th>
+      <th>По плану</th>
+      <th>Фактично</th>
+      <th>Відхилення (+, -)</th>
+      <th>Виконання (%)</th>
+    </tr>
+    <% @report.values.each do |value| %>
+        <tr class="<%= cycle :odd, :even %>">
+          <td><%= value.line.name_for_select_tag %></td>
+          <td><%= value.line.code %></td>
+          <td><%= value.value1 %></td>
+          <td><%= value.value2 %></td>
+          <td><%= value.deviation %></td>
+          <td><%= value.execution %></td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+<%= link_to 'Редагувати', edit_company_reportings_plan_path(params[:company_id], @report) %> |
+<%= link_to 'Зберегти в PDF', {:controller => "reportings/plans", :action => "download_pdf", :company_id=>@company.id, :id=>@report.id}, :title => "Экспорт в CSV таблицы преподавателей" %> |
 <%= link_to 'Назад', company_reportings_plans_path %>

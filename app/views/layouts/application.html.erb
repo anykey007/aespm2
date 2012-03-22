@@ -7,26 +7,26 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="second-header">
-  <ul class="dropdown">
+<div class="main-header">
+  <ul>
     <li>
-      <%= link_to "Предприятия", companies_path, :title => "" %>
+      <%= link_to "Підприємства", companies_path, :title => "" %>
     </li>
     <% if user_signed_in? && current_user.admin? %>
         <li>
-          <%= link_to "Формы отчетности", reporting_forms_path, :title => "" %>
+          <%= link_to "Форми звітності", reporting_forms_path, :title => "" %>
         </li>
     <% end %>
   </ul>
 </div>
 <div id="user_nav">
   <% if user_signed_in? %>
-      Вы вошли как <span class="green"><%= current_user.name %></span> </br>
-      <%= link_to "Выйти", destroy_user_session_path, :method => :delete, :class=>"orange" %>
+      Ви увійшли як <span class="green"><%= current_user.name %></span> </br>
+      <%= link_to "Вийти", destroy_user_session_path, :method => :delete, :class=>"orange" %>
       <br/>
   <% else %>
-      <%= link_to "Войти", new_user_session_path, :title => "Sign in", :class=>"green" %> </br>
-      <%= link_to "Зарегистрироваться", new_user_registration_path, :title => "Sing out", :onclick =>"return get_shadow(this);" %>
+      <%= link_to "Увійти", new_user_session_path, :title => "Sign in", :class=>"green" %> </br>
+      <%= link_to "Зареєструватися", new_user_registration_path, :title => "Sing out", :onclick =>"return get_shadow(this);" %>
   <% end %>  <br/>
 </div>
 <div id='content'>

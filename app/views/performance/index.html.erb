@@ -1,20 +1,20 @@
-<h1>Показатели деятельности компании на <%= @period.strftime("%d.%m.%Y") %> </h1>
+<h1>Показники діяльності підприємства на <%= @period.strftime("%d.%m.%Y") %> </h1>
 <%= form_for (company_performance_index_path(@company)) do |f| %>
     <div class="field">
-      <%= label_tag 'Выберите дату' %>
+      <%= label_tag 'Оберіть дату' %>
       <br/>
       <%= select_date Date.today, :prefix => :period %>
     </div>
     <div class="actions">
-      <%= f.submit 'Показать' %>
+      <%= f.submit 'Показати' %>
     </div>
 <% end %>
 <%= link_to 'Назад', @company %>
 
 <table>
   <tr>
-    <th>Название</th>
-    <th>Значение</th>
+    <th>Назва</th>
+    <th>Значення</th>
   </tr>
   <tr>
     <td colspan="2">
@@ -26,7 +26,7 @@
       <b>Середньооблікова кількість штатних працівників</b>
     </td>
     <td>
-      <%= @performance.average_number_of_staff ? @performance.average_number_of_staff : 'нет данных' %>
+      <%= @performance.average_number_of_staff ? @performance.average_number_of_staff.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -34,7 +34,7 @@
       <b>Середня заробітна плата</b>
     </td>
     <td>
-      <%= @performance.average_salary ? @performance.average_salary : 'нет данных' %>
+      <%= @performance.average_salary ? @performance.average_salary.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -42,7 +42,7 @@
       <b>Сума заборгованості із заробітної плати</b>
     </td>
     <td>
-      <%= @performance.total_wage_arrears ? @performance.total_wage_arrears : 'нет данных' %>
+      <%= @performance.total_wage_arrears ? @performance.total_wage_arrears.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -50,7 +50,7 @@
       <b>Відрахування на соціальні заходи</b>
     </td>
     <td>
-      <%= @performance.social_charges ? @performance.social_charges : 'нет данных' %>
+      <%= @performance.social_charges ? @performance.social_charges.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -63,7 +63,7 @@
       <b>Чистий дохід (виручка) від реалізації продукції (товарів, робіт, послуг)</b>
     </td>
     <td>
-      <%= @performance.net_profit ? @performance.net_profit : 'нет данных' %>
+      <%= @performance.net_profit ? @performance.net_profit.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -71,7 +71,7 @@
       <b>Чистий прибуток (збиток)</b>
     </td>
     <td>
-      <%= @performance.net_profit_or_loss ? @performance.net_profit_or_loss : 'нет данных' %>
+      <%= @performance.net_profit_or_loss ? @performance.net_profit_or_loss.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -79,7 +79,8 @@
       <b>Частина дівідендів, нарахованих на акції</b>
     </td>
     <td>
-      <%= @performance.part_dividendiv_accrued_on_shares ? @performance.part_dividendiv_accrued_on_shares : 'нет данных' %>
+      <%= @performance.part_dividendiv_accrued_on_shares ?
+                  @performance.part_dividendiv_accrued_on_shares.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -87,7 +88,8 @@
       <b>Частина чистого прибутку (доходу), що перераховується до державного бюджету</b>
     </td>
     <td>
-      <%= @performance.part_net_income_is_transferred_to_the_state_budget ? @performance.part_net_income_is_transferred_to_the_state_budget : 'нет данных' %>
+      <%= @performance.part_net_income_is_transferred_to_the_state_budget ?
+                  @performance.part_net_income_is_transferred_to_the_state_budget.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -100,7 +102,7 @@
       <b>Коефіцієнт рентабельності діяльності</b>
     </td>
     <td>
-      <%= @performance.rate_of_return_of ? @performance.rate_of_return_of : 'нет данных' %>
+      <%= @performance.rate_of_return_of ? @performance.rate_of_return_of.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -108,7 +110,7 @@
       <b>Коефіцієнт абсолютної ліквідності</b>
     </td>
     <td>
-      <%= @performance.absolute_liquidity_ratio ? @performance.absolute_liquidity_ratio : 'нет данных' %>
+      <%= @performance.absolute_liquidity_ratio ? @performance.absolute_liquidity_ratio.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -116,7 +118,7 @@
       <b>Коефіцієнт забезпеченості власними коштами</b>
     </td>
     <td>
-      <%= @performance.ratio_of_own_funds ? @performance.ratio_of_own_funds : 'нет данных' %>
+      <%= @performance.ratio_of_own_funds ? @performance.ratio_of_own_funds.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -124,7 +126,7 @@
       <b>Коефіцієнт загальної ліквідності</b>
     </td>
     <td>
-      <%= @performance.ratio_of_total_liquidity ? @performance.ratio_of_total_liquidity : 'нет данных' %>
+      <%= @performance.ratio_of_total_liquidity ? @performance.ratio_of_total_liquidity.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -132,7 +134,7 @@
       <b>Коефіцієнт покриття</b>
     </td>
     <td>
-      <%= @performance.ratio_coating ? @performance.ratio_coating : 'нет данных' %>
+      <%= @performance.ratio_coating ? @performance.ratio_coating.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -140,7 +142,7 @@
       <b>Коефіцієнт фінансової стійкості</b>
     </td>
     <td>
-      <%= @performance.retio_of_financial_stability ? @performance.retio_of_financial_stability : 'нет данных' %>
+      <%= @performance.retio_of_financial_stability ? @performance.retio_of_financial_stability.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>
@@ -148,7 +150,7 @@
       <b>Коефіцієнт рентабельності активів</b>
     </td>
     <td>
-      <%= @performance.ratio_return_on_assets ? @performance.ratio_return_on_assets : 'нет данных' %>
+      <%= @performance.ratio_return_on_assets ? @performance.ratio_return_on_assets.round(2) : 'нет данных' %>
     </td>
   </tr>
 </table>

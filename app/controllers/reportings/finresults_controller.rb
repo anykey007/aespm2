@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Reportings::FinresultsController < ApplicationController
     # GET /reportings/labors
     # GET /reportings/labors.json
@@ -22,6 +23,13 @@ class Reportings::FinresultsController < ApplicationController
         format.json { render json: @report }
       end
     end
+
+    def download_pdf
+    output = FinresultsReport.new
+    output.set_rep(params[:company_id], params[:id])
+    output= output.to_pdf
+    send_data output, :type => 'application/pdf', :filename => "Звіт про фінансові результати.pdf"
+  end
 
     # GET /reportings/labors/new
     # GET /reportings/labors/new.json

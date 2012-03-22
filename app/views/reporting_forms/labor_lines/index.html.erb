@@ -1,25 +1,26 @@
-<h1>Строки </h1>
+<h1>Статті звіту з праці</h1>
 
-<table>
+<%= link_to 'Нова стаття', new_reporting_forms_labor_line_path %>
+<table id="line_items">
   <tr>
-    <th>Название</th>
+    <th>Назва</th>
     <th>Код</th>
     <th></th>
     <th></th>
     <th></th>
   </tr>
 
-<% @lines.each do |reporting_forms_labor_line| %>
-  <tr>
-    <td><%= reporting_forms_labor_line.name_for_select_tag %></td>
-    <td><%= reporting_forms_labor_line.code %></td>
-    <td><%= link_to 'Show', reporting_forms_labor_line %></td>
-    <td><%= link_to 'Edit', edit_reporting_forms_labor_line_path(reporting_forms_labor_line) %></td>
-    <td><%= link_to 'Destroy', reporting_forms_labor_line, confirm: 'Are you sure?', method: :delete %></td>
+<% @lines.each do |line| %>
+  <tr class="<%= cycle :odd, :even %>">
+    <td><%= line.name_for_select_tag %></td>
+    <td><%= line.code %></td>
+    <td><%= link_to 'Перегляд', line %></td>
+    <td><%= link_to 'Редагувати', edit_reporting_forms_labor_line_path(line) %></td>
+    <td><%= link_to 'Видалити', line, confirm: 'Ви впевнені?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Labor line', new_reporting_forms_labor_line_path %>
+<%= link_to 'Нова стаття', new_reporting_forms_labor_line_path %>

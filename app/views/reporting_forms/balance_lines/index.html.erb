@@ -1,8 +1,8 @@
-<h1>Строки Баланса</h1>
-<%= link_to 'New Line', new_reporting_forms_balance_line_path %>
-<table>
+<h1>Статті балансу</h1>
+<%= link_to 'Нова стаття', new_reporting_forms_balance_line_path %>
+<table id="line_items">
   <tr>
-    <th>Название</th>
+    <th>Назва</th>
     <th>Код</th>
     <th></th>
     <th></th>
@@ -10,16 +10,16 @@
   </tr>
 
 <% @lines.each do |line| %>
-  <tr>
+  <tr class="<%= cycle :odd, :even %>">
     <td><%= line.name_for_select_tag %></td>
     <td><%= line.code %></td>
-    <td><%= link_to 'Show', line %></td>
-    <td><%= link_to 'Edit', edit_reporting_forms_balance_line_path(line) %></td>
-    <td><%= link_to 'Destroy', line, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Перегляд', line %></td>
+    <td><%= link_to 'Редагувати', edit_reporting_forms_balance_line_path(line) %></td>
+    <td><%= link_to 'Видалити', line, confirm: 'Ви впевнені?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Line', new_reporting_forms_balance_line_path %>
+<%= link_to 'Нова стаття', new_reporting_forms_balance_line_path %>

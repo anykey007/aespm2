@@ -11,21 +11,22 @@
     </div>
   <% end %>
      <div class="field">
-      <%= f.label :period %>
+      <%= f.label :period, 'Період' %>
       <br/>
       <%= select_date @report.period, :prefix => :period %>
     </div>
   <div class="lines">
-  <p>Строки формы отчетности</p>
-  <table class="report">
+  <table id="line_items">
     <tr>
-      <th>Строка</th>
-      <th>Код строки</th>
-      <th style="width:50px;">За звітний місяць</th>
-      <th>а період з початку року</th>
+      <th>Стаття</th>
+      <th>Код рядка</th>
+      <th>За звітний місяць</th>
+      <th>За період з початку року</th>
     </tr>
     <%= f.fields_for :values, @line_values do |builder| %>
-        <%= render "line_values_fields", :f => builder, :line=>builder.object.line %>
+        <tr class="<%= cycle :odd, :even %>">
+            <%= render "line_values_fields", :f => builder, :line=>builder.object.line %>
+        </tr>
     <% end %>
   </table>
 </div>

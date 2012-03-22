@@ -6,6 +6,8 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
+require "prawn"
+
 # require "rails/test_unit/railtie"
 
 if defined?(Bundler)
@@ -61,5 +63,7 @@ module AESPM
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.autoload_paths << "#{Rails.root}/app/reports"
   end
 end

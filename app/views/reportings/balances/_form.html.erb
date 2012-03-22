@@ -1,35 +1,36 @@
 <%= form_for [@company, @report] do |f| %>
-  <% if @report.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@report.errors.count, "error") %> prohibited this reportings_balance from being saved:</h2>
+    <% if @report.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@report.errors.count, "error") %> prohibited this reportings_balance from being saved:</h2>
 
-      <ul>
-      <% @report.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+          <ul>
+            <% @report.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
     <div class="field">
-      <%= f.label :period %>
+      <%= f.label :period, 'Період' %>
       <br/>
       <%= select_date @report.period, :prefix => :period %>
     </div>
-  <div class="lines">
-  <p>Строки формы отчетности</p>
-  <table class="report">
-    <tr>
-      <th>Строка</th>
-      <th>Код строки</th>
-      <th style="width:50px;">На початок звітного періоду</th>
-      <th>На кінець звітного періоду</th>
-    </tr>
-    <%= f.fields_for :values, @line_values do |builder| %>
-        <%= render "line_values_fields", :f => builder, :line=>builder.object.line %>
-    <% end %>
-  </table>
-</div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="lines">
+      <table id="line_items">
+        <tr>
+          <th>Стаття</th>
+          <th>Код рядка</th>
+          <th>На початок звітного періоду</th>
+          <th>На кінець звітного періоду</th>
+        </tr>
+        <%= f.fields_for :values, @line_values do |builder| %>
+            <tr class="<%= cycle :odd, :even %>">
+              <%= render "line_values_fields", :f => builder, :line=>builder.object.line %>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
 <% end %>

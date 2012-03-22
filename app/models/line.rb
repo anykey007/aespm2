@@ -10,7 +10,7 @@ class Line < ActiveRecord::Base
   validates_presence_of :name
 
  def disabled?
-   childs.size>0 || total
+   self && (childs.size>0 || total)
  end
 
   def sign_plus?

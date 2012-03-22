@@ -1,15 +1,17 @@
-<h1>Формы отчетности</h1>
+<h1>Формы звітності</h1>
 <ul class="dropdown">
   <li>
     <%= link_to "Баланс", {:controller => "reporting_forms/balance_lines", :action => "index"}, :title => "" %>
   </li>
   <li>
-    <%= link_to "Финансовый план", {:controller => "reporting_forms/plan_lines", :action => "index"}, :title => "" %>
+    <%= link_to "Фінансовий план", {:controller => "reporting_forms/plan_lines", :action => "index"}, :title => "" %>
   </li>
   <li>
-    <%= link_to "ПВ «Звіт з праці»", {:controller => "reporting_forms/labor_lines", :action => "index"}, :title => "" %>
+    <%= link_to "Звіт з праці", {:controller => "reporting_forms/labor_lines", :action => "index"}, :title => "" %>
   </li>
   <li>
-    <%= link_to "Финансовые результаты", {:controller => "reporting_forms/finresult_lines", :action => "index"}, :title => "" %>
+    <%= link_to "Звіт про фінансові результати", {:controller => "reporting_forms/finresult_lines", :action => "index"}, :title => "" %>
   </li>
 </ul>
+
+

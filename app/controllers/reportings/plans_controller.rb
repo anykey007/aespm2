@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Reportings::PlansController < ApplicationController
   # GET /reportings/plans
   # GET /reportings/plans.json
@@ -21,6 +22,13 @@ class Reportings::PlansController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @report }
     end
+  end
+
+  def download_pdf
+    output = PlansReport.new
+    output.set_rep(params[:company_id], params[:id])
+    output= output.to_pdf
+    send_data output, :type => 'application/pdf', :filename => "Фінансовий план.pdf"
   end
 
   # GET /reportings/plans/new
@@ -60,7 +68,7 @@ class Reportings::PlansController < ApplicationController
   def create
     @company = current_user.companies.find(params[:company_id])
     @report = @company.plans.new(params[:reportings_plan])
-    @report.period = Date.civil(params[:reportings_plan][:period][:year].to_i, params[:reportings_plan][:period][:month].to_i, params[:reportings_plan][:period][:day].to_i)
+    @report.period = Date.civil(params[:period][:year].to_i, params[:period][:month].to_i, params[:period][:day].to_i)
     respond_to do |format|
       if @report.valid? &&  @report.save_and_update_parents
         format.html { redirect_to company_reportings_plan_path(params[:company_id],@report), notice: 'Plan was successfully created.' }
@@ -77,7 +85,7 @@ class Reportings::PlansController < ApplicationController
   def update
     @company = current_user.companies.find(params[:company_id])
     @report = @company.plans.find(params[:id])
-    @report.period = Date.civil(params[:reportings_plan][:period][:year].to_i, params[:reportings_plan][:period][:month].to_i, params[:reportings_plan][:period][:day].to_i)
+    @report.period = Date.civil(params[:period][:year].to_i, params[:period][:month].to_i, params[:period][:day].to_i)
     params[:reportings_plan][:period]=@report.period
     respond_to do |format|
       if @report.valid? && @report.update_attributes_and_update_parents(params[:reportings_plan])

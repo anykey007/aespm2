@@ -1,3 +1,4 @@
+# encoding: utf-8
 class Reportings::LaborsController < ApplicationController
   # GET /reportings/labors
   # GET /reportings/labors.json
@@ -21,6 +22,13 @@ class Reportings::LaborsController < ApplicationController
       format.html # show.html.erb
       format.json { render json: @report }
     end
+  end
+
+   def download_pdf
+    output = LaborsReport.new
+    output.set_rep(params[:company_id], params[:id])
+    output= output.to_pdf
+    send_data output, :type => 'application/pdf', :filename => "Звіт з праці.pdf"
   end
 
   # GET /reportings/labors/new

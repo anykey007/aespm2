@@ -14,13 +14,18 @@ AESPM::Application.routes.draw do
     get "/reportings/index"
 #    resources :reportings
     namespace :reportings do
-      resources :balances
+      resources :balances do
+        collection do
+          get 'download_pdf'
+
+        end
+      end
       resources :plans
       resources :labors
       resources :finresults
 
     end
-    match 'performance/index' => 'performance#index', :via => [:get,:post]
+    match 'performance/index' => 'performance#index', :via => [:get, :post]
   end
 
   # The priority is based upon order of creation:

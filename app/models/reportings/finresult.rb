@@ -2,6 +2,9 @@ class Reportings::Finresult < Report
   def lines
      ReportingForms::FinresultLine.all
   end
+  def total_lines
+    ReportingForms::FinresultLine.where('total=1')
+  end
 
   attr_accessor :code_035, :code_220, :code_225, :code_250, :code_280
 
