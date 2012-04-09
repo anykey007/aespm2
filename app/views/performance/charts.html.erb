@@ -1,0 +1,64 @@
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  new Highcharts.Chart({
+    chart: { renderTo: 'orders_chart' },
+    title: { text: 'Показники фінансової діяльності' },
+    xAxis: { type: 'datetime' },
+    yAxis: {
+      title: { text: 'Коефіцієнт'}
+    },
+    series: [{
+//       pointInterval: <%= 3.month * 1000 %>,
+//        pointStart: <%= DateTime.parse(@performances.first.period.strftime("%Y/%m/%d")).to_i*1000 %>,
+//        pointInterval: <%= @performances.map{|rec| DateTime.parse( rec.period.strftime("%Y/%m/%d")).to_i*1000}%>,
+//        pointStart: <%= DateTime.parse(@performances.first.period.strftime("%Y/%m/%d")).to_i*1000 %>,
+        name: 'Рентабельність діяльності',
+        data: <%= @performances.map{|rec| rec.rate_of_return_of_to_chart}%>
+    },
+    {
+        name: 'Абсолютна ліквідность',
+        data: <%= @performances.map{|rec| rec.absolute_liquidity_ratio_to_chart} %>
+    },
+    {
+        name: 'Забезпечення власними коштами',
+        data: <%= @performances.map{|rec| rec.ratio_of_own_funds_to_chart} %>
+    },
+    {
+        name: 'Загальна ліквідность',
+        data: <%= @performances.map{|rec| rec.ratio_of_total_liquidity_to_chart} %>
+    },
+    {
+        name: 'Коефіцієнт покриття',
+        data: <%= @performances.map{|rec| rec.ratio_coating_to_chart} %>
+    },
+    {
+        name: 'Фінансова стійкость',
+        data: <%= @performances.map{|rec| rec.ratio_of_financial_stability_to_chart} %>
+    },
+    {
+        name: 'Рентабельність активів',
+        data: <%= @performances.map{|rec| rec.ratio_return_on_assets_to_chart} %>
+    }
+    ]
+  });
+});
+</script>
+
+<h1>Показники діяльності підприємства на <%= @period.strftime("%d.%m.%Y") %> </h1>
+<%= form_for (company_performance_index_path(@company)) do |f| %>
+    <div class="field">
+      <%= label_tag 'Оберіть дату початку періоду' %>
+      <br/>
+      <%= select_year -1.year.from_now, :prefix => :period %>
+    </div>
+    <div class="field">
+      <%= label_tag 'Оберіть дату кінця періоду' %>
+      <br/>
+      <%= select_year Date.today, :prefix => :period2 %>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Показати' %>
+    </div>
+<% end %>
+<%= link_to 'Назад', @company %>
+<div id="orders_chart" style="width:560px; height:300px;"></div>

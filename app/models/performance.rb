@@ -80,12 +80,20 @@ class Performance
           net_profit_or_loss/@finresult.code_035.value1 : nil
   end
 
+  def rate_of_return_of_to_chart
+    [DateTime.parse( period.strftime("%Y/%m/%d")).to_i*1000, !rate_of_return_of.nil? ? rate_of_return_of.round(3) : 0 ]
+  end
+
   # Коефіцієнт абсолютної ліквідності
   # характеризує частину поточних зобов'язань, яка може бути сплачена негайно
   # форма № 1, рядки 230, 240, 620, графа 4
   def absolute_liquidity_ratio
     (!@balance.nil? && !@balance.code_620.nil? && !@balance.code_230.nil? && !@balance.code_240.nil? && @balance.code_620.value2.nonzero?) ?
       (@balance.code_230.value2+@balance.code_240.value2)/@balance.code_620.value2 : nil
+  end
+
+  def absolute_liquidity_ratio_to_chart
+    [DateTime.parse( period.strftime("%Y/%m/%d")).to_i*1000, !absolute_liquidity_ratio.nil? ? absolute_liquidity_ratio.round(3) : 0 ]
   end
 
   def self.absolute_liquidity_ratio_norm_min
@@ -103,6 +111,10 @@ class Performance
     (!@balance.nil? && !@balance.code_620.nil? && !@balance.code_260.nil? && @balance.code_260.value2.nonzero?) ?
       (@balance.code_260.value2-@balance.code_620.value2)/@balance.code_260.value2 : nil
   end
+  def ratio_of_own_funds_to_chart
+    [DateTime.parse( period.strftime("%Y/%m/%d")).to_i*1000, !ratio_of_own_funds.nil? ? ratio_of_own_funds.round(3) : 0 ]
+  end
+
 
   def self.ratio_of_own_funds_min
     0.1
@@ -115,11 +127,20 @@ class Performance
       (@balance.code_260.value2)/(@balance.code_480.value2+@balance.code_620.value2) : nil
   end
 
+  def ratio_of_total_liquidity_to_chart
+    [DateTime.parse( period.strftime("%Y/%m/%d")).to_i*1000, !ratio_of_total_liquidity.nil? ? ratio_of_total_liquidity.round(3) : 0 ]
+  end
+
+
   # Коефіцієнт покриття
   # форма № 1, рядки 260, 620, графа 4
   def ratio_coating
     (!@balance.nil? && !@balance.code_620.nil? && !@balance.code_260.nil? && @balance.code_620.value2.nonzero?) ?
       @balance.code_260.value2/@balance.code_620.value2 : nil
+  end
+
+  def ratio_coating_to_chart
+    [DateTime.parse( period.strftime("%Y/%m/%d")).to_i*1000, !ratio_coating.nil? ? ratio_coating.round(3) : 0 ]
   end
 
   def ratio_coating_normal
@@ -130,9 +151,13 @@ class Performance
   # характеризує співвідношення власних та позикових коштів і залежність підприємства від зовнішніх фінансових джерел 
   # форма № 1, рядки 380, 480, 620, графа 4
   # власний капітал / (довгострокові зобов'язання + поточні зобов'язання)
-  def retio_of_financial_stability
+  def ratio_of_financial_stability
      (!@balance.nil? && !@balance.code_620.nil? && !@balance.code_380.nil? && !@balance.code_480.nil? && (@balance.code_620.value2+@balance.code_480.value2).nonzero?) ?
       (@balance.code_380.value2)/(@balance.code_480.value2+@balance.code_620.value2) : nil
+  end
+
+  def ratio_of_financial_stability_to_chart
+    [DateTime.parse( period.strftime("%Y/%m/%d")).to_i*1000, !ratio_of_financial_stability.nil? ? ratio_of_financial_stability.round(3) : 0 ]
   end
 
 
@@ -143,6 +168,10 @@ class Performance
   def ratio_return_on_assets
      (!@balance.nil? && net_profit_or_loss && @balance.code_280 && (@balance.code_280.value1+@balance.code_280.value2).nonzero?) ?
          net_profit_or_loss/((@balance.code_280.value1+@balance.code_280.value2)/2) : nil
+  end
+
+  def ratio_return_on_assets_to_chart
+    [DateTime.parse( period.strftime("%Y/%m/%d")).to_i*1000, !ratio_return_on_assets.nil? ? ratio_return_on_assets.round(3) : 0 ]
   end
 
 

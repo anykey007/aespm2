@@ -9,7 +9,9 @@
       <%= f.submit 'Показати' %>
     </div>
 <% end %>
-<%= link_to 'Назад', @company %>
+<%= link_to 'Назад', @company %> |
+<%= link_to "Графики", company_performance_charts_path(@company), :title => "" %>
+
 
 <table>
   <tr>
@@ -142,7 +144,7 @@
       <b>Коефіцієнт фінансової стійкості</b>
     </td>
     <td>
-      <%= @performance.retio_of_financial_stability ? @performance.retio_of_financial_stability.round(2) : 'нет данных' %>
+      <%= @performance.ratio_of_financial_stability ? @performance.ratio_of_financial_stability.round(2) : 'нет данных' %>
     </td>
   </tr>
   <tr>

@@ -26,6 +26,7 @@ AESPM::Application.routes.draw do
 
     end
     match 'performance/index' => 'performance#index', :via => [:get, :post]
+    match 'performance/charts' => 'performance#charts', :via => [:get, :post]
   end
 
   # The priority is based upon order of creation:
