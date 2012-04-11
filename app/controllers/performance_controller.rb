@@ -1,3 +1,4 @@
+#encoding: utf-8
 class PerformanceController < ApplicationController
 
   def index
@@ -23,10 +24,22 @@ class PerformanceController < ApplicationController
 
 
     @performances = @company.performances(@period, @period2)
+    @x_axis = x_axis(@period, @period2)
 #
+#    @x_axis= ["Jan", 'Feb', 'Mar', 'Apr', 'May']
     logger.debug '-'*50
-    logger.debug @performances.map{|rec| [rec.average_number_of_staff ,  DateTime.parse( rec.period.strftime("%Y/%m/%d")).to_i*1000]}
+    logger.debug @x_axis.inspect
 
 
+  end
+
+  def x_axis(start_period, end_period)
+    x_list = []
+    while start_period <= end_period
+      kvartal = "рік, #{start_period.month.to_i/3} квартал".to_s
+      x_list<<(start_period.year.to_s+kvartal)
+      start_period+=3.month
+    end
+    x_list
   end
 end

@@ -1,0 +1,31 @@
+//            series: [
+//                {
+//                    name: 'Рентабельність діяльності',
+                    data: <%= #@performances.map{|rec| rec.rate_of_return_of_to_chart}
+                    %>
+//                },
+//                {
+//                    name: 'Абсолютна ліквідность',
+                    data: <%= #@performances.map{|rec| rec.absolute_liquidity_ratio_to_chart} %>
+//                },
+//                {
+//                    name: 'Забезпечення власними коштами',
+                    data: <%= #@performances.map{|rec| rec.ratio_of_own_funds_to_chart} %>
+//                },
+//                {
+//                    name: 'Загальна ліквідность',
+                    data: <%= #@performances.map{|rec| rec.ratio_of_total_liquidity_to_chart} %>
+//                },
+//                {
+//                    name: 'Коефіцієнт покриття',
+                    data: <%= #@performances.map{|rec| rec.ratio_coating_to_chart} %>
+//                },
+//                {
+//                    name: 'Фінансова стійкость',
+                    data: <%= #@performances.map{|rec| rec.ratio_of_financial_stability_to_chart} %>
+//                },
+//                {
+//                    name: 'Рентабельність активів',
+                    data: <%= #@performances.map{|rec| rec.ratio_return_on_assets_to_chart} %>
+//                }
+//            ]

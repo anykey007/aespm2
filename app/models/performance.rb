@@ -1,3 +1,4 @@
+#encoding: utf-8
 class Performance
   def initialize(company,period)
     @company = Company.find(company)
@@ -215,5 +216,8 @@ class Performance
   end
 
 
+  def strfkvartal(per)
+    per.year.to_s+"; #{per.month.to_i/3} квартал"
+  end
 
 end

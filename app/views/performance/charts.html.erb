@@ -1,64 +1,147 @@
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  new Highcharts.Chart({
-    chart: { renderTo: 'orders_chart' },
-    title: { text: 'Показники фінансової діяльності' },
-    xAxis: { type: 'datetime' },
-    yAxis: {
-      title: { text: 'Коефіцієнт'}
-    },
-    series: [{
-//       pointInterval: <%= 3.month * 1000 %>,
-//        pointStart: <%= DateTime.parse(@performances.first.period.strftime("%Y/%m/%d")).to_i*1000 %>,
-//        pointInterval: <%= @performances.map{|rec| DateTime.parse( rec.period.strftime("%Y/%m/%d")).to_i*1000}%>,
-//        pointStart: <%= DateTime.parse(@performances.first.period.strftime("%Y/%m/%d")).to_i*1000 %>,
-        name: 'Рентабельність діяльності',
-        data: <%= @performances.map{|rec| rec.rate_of_return_of_to_chart}%>
-    },
-    {
-        name: 'Абсолютна ліквідность',
-        data: <%= @performances.map{|rec| rec.absolute_liquidity_ratio_to_chart} %>
-    },
-    {
-        name: 'Забезпечення власними коштами',
-        data: <%= @performances.map{|rec| rec.ratio_of_own_funds_to_chart} %>
-    },
-    {
-        name: 'Загальна ліквідность',
-        data: <%= @performances.map{|rec| rec.ratio_of_total_liquidity_to_chart} %>
-    },
-    {
-        name: 'Коефіцієнт покриття',
-        data: <%= @performances.map{|rec| rec.ratio_coating_to_chart} %>
-    },
-    {
-        name: 'Фінансова стійкость',
-        data: <%= @performances.map{|rec| rec.ratio_of_financial_stability_to_chart} %>
-    },
-    {
-        name: 'Рентабельність активів',
-        data: <%= @performances.map{|rec| rec.ratio_return_on_assets_to_chart} %>
-    }
-    ]
-  });
-});
+    $(function () {
+        new Highcharts.Chart({
+            chart: { renderTo: 'fin_chart' },
+            title: { text: 'Показники фінансової діяльності' },
+
+//            xAxis: { type: 'datetime' },
+            xAxis: {
+                categories: <%= raw @x_axis %>
+            },
+            yAxis: {
+                title: { text: 'Одиниць'}
+            },
+            plotOptions: {
+                line: {
+                    dataLabels: {
+                        enabled: true
+                    },
+//                    enableMouseTracking: false
+                }
+            },
+            series: [
+                {
+                    name: 'Рентабельність діяльності',
+                    data: <%= @performances.map{|rec| !rec.rate_of_return_of.nil? ? rec.rate_of_return_of.round(3) : 0}%>
+                },
+                {
+                    name: 'Абсолютна ліквідность',
+                    data: <%= @performances.map{|rec| !rec.absolute_liquidity_ratio.nil? ? rec.absolute_liquidity_ratio.round(3) : 0}%>
+                },
+                {
+                    name: 'Забезпечення власними коштами',
+                    data: <%= @performances.map{|rec| !rec.ratio_of_own_funds.nil? ? rec.ratio_of_own_funds.round(3) : 0}%>
+                },
+                {
+                    name: 'Загальна ліквідность',
+                    data: <%= @performances.map{|rec| !rec.ratio_of_total_liquidity.nil? ? rec.ratio_of_total_liquidity.round(3) : 0}%>
+                },
+                {
+                    name: 'Коефіцієнт покриття',
+                    data: <%= @performances.map{|rec| !rec.ratio_coating.nil? ? rec.ratio_coating.round(3) : 0}%>
+                },
+                {
+                    name: 'Фінансова стійкость',
+                    data: <%= @performances.map{|rec| !rec.ratio_of_financial_stability.nil? ? rec.ratio_of_financial_stability.round(3) : 0}%>
+                },
+                {
+                    name: 'Рентабельність активів',
+                    data: <%= @performances.map{|rec| !rec.ratio_return_on_assets.nil? ? rec.ratio_return_on_assets.round(3) : 0}%>
+                }
+            ]
+
+        });
+
+        new Highcharts.Chart({
+            chart: { renderTo: 'comerce_chart' },
+            title: { text: 'Комерційні показники' },
+            xAxis: {
+                categories: <%= raw @x_axis %>
+            },
+            yAxis: {
+                title: { text: 'тис.грн'}
+            },
+            series: [
+                {
+                    name: 'Чистий дохід від реалізації продукції',
+                    data: <%= @performances.map{|rec| !rec.net_profit.nil? ? rec.net_profit.round(3) : 0}%>
+                },
+                {
+                    name: 'Чистий прибуток (збиток)',
+                    data: <%= @performances.map{|rec| !rec.net_profit_or_loss.nil? ? rec.net_profit_or_loss.round(3) : 0}%>
+                },
+                {
+                    name: 'Частина дівідендів, нарахованих на акції',
+                    data: <%= @performances.map{|rec| !rec.part_dividendiv_accrued_on_shares.nil? ? rec.part_dividendiv_accrued_on_shares.round(3) : 0}%>
+                },
+                {
+                    name: 'Частина чистого прибутку, що перераховується до державного бюджету',
+                    data: <%= @performances.map{|rec| !rec.part_net_income_is_transferred_to_the_state_budget.nil? ? rec.part_net_income_is_transferred_to_the_state_budget.round(3) : 0}%>
+                }
+            ]
+
+        });
+
+        new Highcharts.Chart({
+            chart: { renderTo: 'nocomerce_chart' },
+            title: { text: 'Некомерційні показники' },
+            xAxis: {
+                categories: <%= raw @x_axis %>
+            },
+            yAxis: {
+                title: { text: 'тис.грн'}
+            },
+            series: [
+                {
+                    name: 'Середня заробітна плата',
+                    data: <%= @performances.map{|rec| !rec.average_salary.nil? ? rec.average_salary.round(3) : 0}%>
+                },
+                {
+                    name: 'Сума заборгованості із заробітної плати',
+                    data: <%= @performances.map{|rec| !rec.total_wage_arrears.nil? ? rec.total_wage_arrears.round(3) : 0}%>
+                },
+                {
+                    name: 'Відрахування на соціальні заходи',
+                    data: <%= @performances.map{|rec| !rec.social_charges.nil? ? rec.social_charges.round(3) : 0}%>
+                }
+            ]
+
+        });
+
+        new Highcharts.Chart({
+            chart: { renderTo: 'average_number_of_staff' },
+            title: { text: 'Середньооблікова кількість штатних працівників' },
+            xAxis: {
+                categories: <%= raw @x_axis %>
+            },
+            yAxis: {
+                title: { text: 'Чоловік'}
+            },
+            series: [
+                {
+                    name: 'Рентабельність діяльності',
+                    data: <%= @performances.map{|rec| !rec.average_number_of_staff.nil? ? rec.average_number_of_staff.round(3) : 0}%>
+                }
+            ]
+
+        });
+    });
 </script>
 
-<h1>Показники діяльності підприємства на <%= @period.strftime("%d.%m.%Y") %> </h1>
 <%= form_for (company_performance_index_path(@company)) do |f| %>
     <div class="field">
-      <%= label_tag 'Оберіть дату початку періоду' %>
-      <br/>
+      <%= label_tag 'Дата початку періоду' %>
       <%= select_year -1.year.from_now, :prefix => :period %>
-    </div>
-    <div class="field">
-      <%= label_tag 'Оберіть дату кінця періоду' %>
       <br/>
+      <%= label_tag 'Дата кінця періоду' %>
       <%= select_year Date.today, :prefix => :period2 %>
     </div>
     <div class="actions">
-      <%= f.submit 'Показати' %>
+      <%= f.submit 'Побудувати' %>
     </div>
 <% end %>
 <%= link_to 'Назад', @company %>
-<div id="orders_chart" style="width:560px; height:300px;"></div>
+<div id="fin_chart" style="width:500px; height:300px;float:left;"></div>
+<div id="comerce_chart" style="width:500px; height:300px;float:left;"></div>
+<div id="nocomerce_chart" style="width:500px; height:300px;float:left;"></div>
+<div id="average_number_of_staff" style="width:500px; height:300px;float:left;"></div>
