@@ -1,0 +1,25 @@
+<h1>Форми 1-Б</h1>
+
+<table>
+  <tr>
+    <th>Період</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reportings.each do |form| %>
+  <tr>
+    <td><%= form.period %></td>
+    <td><%= link_to 'Перегляд', company_reportings_b1_path(params[:company_id],form) %></td>
+    <td><%= link_to 'Редагування', edit_company_reportings_b1_path(params[:company_id],form) %></td>
+    <td><%= link_to 'Видалення', company_reportings_b1_path(params[:company_id],form), confirm: 'Вы впевнені?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Новий', new_company_reportings_b1_path %> |
+<%= link_to 'Назад', @company %>
+

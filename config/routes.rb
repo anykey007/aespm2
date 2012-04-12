@@ -5,7 +5,7 @@ AESPM::Application.routes.draw do
   resources :index
 
   namespace :reporting_forms do
-    resources :balance_lines, :plan_lines, :labor_lines, :finresult_lines
+    resources :balance_lines, :plan_lines, :labor_lines, :finresult_lines, :b1_lines
   end
 
   resources :reporting_forms
@@ -23,6 +23,7 @@ AESPM::Application.routes.draw do
       resources :plans
       resources :labors
       resources :finresults
+      resources :b1s
 
     end
     match 'performance/index' => 'performance#index', :via => [:get, :post]

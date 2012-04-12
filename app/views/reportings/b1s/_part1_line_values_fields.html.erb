@@ -1,0 +1,28 @@
+  <td>
+    <%= f.hidden_field :line_id %>
+    <% if line.disabled? %>
+        <span class="part"><%= f.label :name, line.name_for_select_tag %></span>
+    <% else %>
+        <%= f.label :name, line.name_for_select_tag %>
+    <% end %>
+
+  </td>
+  <td>
+    <% if !line.code.blank? %>
+        <%= f.label :code, line.code %>
+    <% end %>
+  </td>
+  <td>
+    <% if line.disabled? %>
+        <%= f.text_field :value1, :readonly => true, :disabled => true  %>
+    <% else %>
+        <%= f.text_field :value1 %>
+    <% end %>
+  </td>
+  <td>
+    <% if line.disabled? %>
+        <%= f.text_field :value2, :readonly => true, :disabled => true  %>
+    <% else %>
+        <%= f.text_field :value2 %>
+    <% end %>
+  </td>

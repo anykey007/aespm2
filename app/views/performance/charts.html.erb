@@ -11,14 +11,14 @@
             yAxis: {
                 title: { text: 'Одиниць'}
             },
-            plotOptions: {
-                line: {
-                    dataLabels: {
-                        enabled: true
-                    },
-//                    enableMouseTracking: false
-                }
-            },
+//            plotOptions: {
+//                line: {
+//                    dataLabels: {
+//                        enabled: true
+//                    },
+////                    enableMouseTracking: false
+//                }
+//            },
             series: [
                 {
                     name: 'Рентабельність діяльності',
@@ -129,15 +129,18 @@
 </script>
 
 <%= form_for (company_performance_index_path(@company)) do |f| %>
-    <div class="field">
-      <%= label_tag 'Дата початку періоду' %>
-      <%= select_year -1.year.from_now, :prefix => :period %>
-      <br/>
-      <%= label_tag 'Дата кінця періоду' %>
-      <%= select_year Date.today, :prefix => :period2 %>
-    </div>
-    <div class="actions">
-      <%= f.submit 'Побудувати' %>
+    <div style="margin-top:20px;">
+      <div class="field">
+        <div style="width:150px;float:left;"> <%= label_tag 'Початок періоду' %></div>
+        <%= select_year -1.year.from_now, :prefix => :period %>
+        <br/>
+
+        <div style="width:150px;float:left;"><%= label_tag 'Кінець періоду' %></div>
+        <%= select_year Date.today, :prefix => :period2 %>
+      </div>
+      <div class="actions">
+        <%= f.submit 'Побудувати' %>
+      </div>
     </div>
 <% end %>
 <%= link_to 'Назад', @company %>

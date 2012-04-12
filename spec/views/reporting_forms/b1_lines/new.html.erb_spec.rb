@@ -1,0 +1,15 @@
+require 'spec_helper'
+
+describe "reporting_forms_b1_lines/new" do
+  before(:each) do
+    assign(:b1_line, stub_model(ReportingForms::B1Line).as_new_record)
+  end
+
+  it "renders new b1_line form" do
+    render
+
+    # Run the generator again with the --webrat flag if you want to use webrat matchers
+    assert_select "form", :action => reporting_forms_b1_lines_path, :method => "post" do
+    end
+  end
+end

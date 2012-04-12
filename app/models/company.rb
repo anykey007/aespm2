@@ -5,6 +5,7 @@ class Company < ActiveRecord::Base
   has_many :plans, :class_name => "Reportings::Plan", :dependent => :destroy
   has_many :labors, :class_name => "Reportings::Labor", :dependent => :destroy
   has_many :finresults, :class_name => "Reportings::Finresult", :dependent => :destroy
+  has_many :b1s, :class_name => "Reportings::B1", :dependent => :destroy
 
   def performances(start_period, end_period)
    performance_list = []
