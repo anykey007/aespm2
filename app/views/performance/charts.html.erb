@@ -110,7 +110,7 @@
 
         new Highcharts.Chart({
             chart: { renderTo: 'average_number_of_staff' },
-            title: { text: 'Середньооблікова кількість штатних працівників' },
+            title: { text: 'Некомерційні показники' },
             xAxis: {
                 categories: <%= raw @x_axis %>
             },
@@ -119,7 +119,7 @@
             },
             series: [
                 {
-                    name: 'Рентабельність діяльності',
+                    name: 'Середньооблікова кількість штатних працівників',
                     data: <%= @performances.map{|rec| !rec.average_number_of_staff.nil? ? rec.average_number_of_staff.round(3) : 0}%>
                 }
             ]

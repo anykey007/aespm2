@@ -1,13 +1,103 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <b>Назва:</b>
-  <%= @company.name %>
-</p>
-
-
 <%= link_to 'Редагувати', edit_company_path(@company) %> |
 <%= link_to 'Назад', companies_path %>
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+  </tr>
+  <tr>
+    <td><b>ЕДРПОУ</b></td>
+    <td><%= @company.EDRPOY %></td>
+  </tr>
+  <tr>
+    <td>
+      <b>Назва</b></td>
+    <td><%= @company.name %></td>
+  </tr>
+  <tr>
+    <td><b>Держчастка,%</b></td>
+    <td><%= @company.state_share %></td>
+  </tr>
+  <tr>
+    <td><b>Держчастка, кількість акцій</b></td>
+    <td><%= @company.state_share_count %></td>
+  </tr>
+  <tr>
+    <td><b>СФ</b></td>
+    <td><%= @company.SF %></td>
+  </tr>
+  <tr>
+    <td><b>Регіон</b></td>
+    <td><%= @company.region %></td>
+  </tr>
+
+  <tr>
+    <td><b>Контролює управління КПД</b></td>
+    <td><%= @company.management %></td>
+  </tr>
+
+  <tr>
+    <td><b>Орган управління</b></td>
+    <td><%= @company.governing_body %></td>
+  </tr>
+
+  <tr>
+    <td><b>В управлінні ФДМУ / Міністерств</b></td>
+    <td><%= @company.in_the_management %></td>
+  </tr>
+
+  <tr>
+    <td><b>Тип господарського товариства</b></td>
+    <td><%= @company.type_of_business_entity %></td>
+  </tr>
+
+  <tr>
+    <td><b>Ознака банкрутства</b></td>
+    <td><%= @company.bankruptcy ? 'так' : 'ні' %></td>
+  </tr>
+
+  <tr>
+    <td><b>Форма існування акцій</b></td>
+    <td><%= @company.form_of_shares %></td>
+  </tr>
+
+  <tr>
+    <td><b>Стратег</b></td>
+    <td><%= @company.strategist %></td>
+  </tr>
+
+  <tr>
+    <td><b>Адреса</b></td>
+    <td><%= @company.address %></td>
+  </tr>
+
+  <tr>
+    <td><b>Ном.варт.акції</b></td>
+    <td><%= @company.nominal_value_of_shares %></td>
+  </tr>
+
+  <tr>
+    <td><b>Ном.варт.акцій (держ.частки)</b></td>
+    <td><%= @company.nominal_value_of_all_shares %></td>
+  </tr>
+
+  <tr>
+    <td><b>Код ЄДРПОУ орг.упр.</b></td>
+    <td><%= @company.EDRPOY2 %></td>
+  </tr>
+
+  <tr>
+    <td><b>КВЕД</b></td>
+    <td><%= @company.KVED %></td>
+  </tr>
+
+  <tr>
+    <td><b>Пошт. Індекс</b></td>
+    <td><%= @company.mailbox_index %></td>
+  </tr>
+</table>
+
 <h1>Звіти підприємства</h1>
 <ul class="dropdown">
   <li>
@@ -22,9 +112,9 @@
   <li>
     <%= link_to "Звіти про фінансові результати", company_reportings_finresults_path(@company), :title => "" %>
   </li>
-   <!--<li>-->
-    <%= #link_to "ЗВІТИ ПРО ФІНАНСОВІ РЕЗУЛЬТАТИ І ДЕБІТОРСЬКУ ТА КРЕДИТОРСЬКУ ЗАБОРГОВАНІСТЬ  ", company_reportings_b1s_path(@company), :title => ""
-    %>
+  <!--<li>-->
+  <%= #link_to "ЗВІТИ ПРО ФІНАНСОВІ РЕЗУЛЬТАТИ І ДЕБІТОРСЬКУ ТА КРЕДИТОРСЬКУ ЗАБОРГОВАНІСТЬ  ", company_reportings_b1s_path(@company), :title => ""
+  %>
   <!--</li>-->
 </ul>
 <h4><%= link_to "Показники діяльності підприємства", company_performance_index_path(@company), :title => "" %></h4>

@@ -8,18 +8,54 @@
     <th></th>
     <th></th>
   </tr>
-
-  <% @companies.each do |company| %>
+  <% if @group1.any? %>
       <tr>
-        <td><%= company.EDRPOY %></td>
-        <td><%= company.name %></td>
-        <td><%= link_to 'Перегляд', company %></td>
-        <td><%= link_to 'Редагувати', edit_company_path(company) %></td>
-        <td><%= link_to 'Видалити', company, confirm: 'Вы впевнені?', method: :delete %></td>
+        <td colspan="5" class="td_company_group">Група 1</td>
       </tr>
+      <% @group1.each do |company| %>
+          <tr>
+            <td><%= company.EDRPOY %></td>
+            <td><%= company.name %></td>
+            <td><%= link_to 'Перегляд', company %></td>
+            <td><%= link_to 'Редагувати', edit_company_path(company) %></td>
+            <td><%= link_to 'Видалити', company, confirm: 'Вы впевнені?', method: :delete %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <% if @group2.any? %>
+      <tr>
+        <td colspan="5" class="td_company_group">Група 2</td>
+      </tr>
+      <% @group2.each do |company| %>
+          <tr>
+            <td><%= company.EDRPOY %></td>
+            <td><%= company.name %></td>
+            <td><%= link_to 'Перегляд', company %></td>
+            <td><%= link_to 'Редагувати', edit_company_path(company) %></td>
+            <td><%= link_to 'Видалити', company, confirm: 'Вы впевнені?', method: :delete %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <% if @group3.any? %>
+      <tr>
+        <td colspan="5" class="td_company_group">Група 3</td>
+      </tr>
+      <% @group3.each do |company| %>
+          <tr>
+            <td><%= company.EDRPOY %></td>
+            <td><%= company.name %></td>
+            <td><%= link_to 'Перегляд', company %></td>
+            <td><%= link_to 'Редагувати', edit_company_path(company) %></td>
+            <td><%= link_to 'Видалити', company, confirm: 'Вы впевнені?', method: :delete %></td>
+          </tr>
+      <% end %>
   <% end %>
 </table>
 
 <br/>
 
 <%= link_to 'Нове підприємство', new_company_path %>
+
+<p style="font-size:10px;">група 1 – державні підприємства (державні комерційні та казенні підприємства);</p>
+<p style="font-size:10px;">група 2 –  суб'єкти господарювання, державна частка у статутному фонді яких становить від 50 до 100 відсотків;</p>
+<p style="font-size:10px;">група 3 – суб'єкти господарювання, державна частка у статутному фонді яких становить від 25 до 50 відсотків або дорівнює 50 відсоткам.</p>

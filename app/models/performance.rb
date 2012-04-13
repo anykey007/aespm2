@@ -25,7 +25,8 @@ class Performance
   # Порядок розрахунку:  рядок 1070, графа 2 / рядок 1040, графа 2
   def average_salary
    (!@labor.nil? && !@labor.code_1040.nil? && !average_number_of_staff.nil? && average_number_of_staff.nonzero?) ?
-       @labor.code_1070.value2/average_number_of_staff : nil
+#       @labor.code_1070.value2/average_number_of_staff : nil
+      @labor.code_1070.value2 : nil
   end
 
   # Сума заборгованості із заробітної плати
