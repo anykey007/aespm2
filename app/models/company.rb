@@ -11,6 +11,16 @@ class Company < ActiveRecord::Base
   scope :group2, where('state_share >= 50 and state_share < 100')
   scope :group3, where('state_share >= 25 and state_share < 50')
 
+  def generate_reports(start_period, end_period)
+    while start_period <= end_period
+      balances.last.copy_to(start_period)
+      finresults.last.copy_to(start_period)
+      labors.last.copy_to(start_period)
+      plans.last.copy_to(start_period)
+      start_period+=3.month
+    end
+  end
+
   def performances(start_period, end_period)
    performance_list = []
     while start_period <= end_period

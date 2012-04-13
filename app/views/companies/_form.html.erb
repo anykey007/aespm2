@@ -10,101 +10,102 @@
           </ul>
         </div>
     <% end %>
-    <div class="field">
-      <%= f.label :EDRPOY, 'ЕДРПОУ' %>
-      <br/>
-      <%= f.text_field :EDRPOY %>
-    </div>
-    <div class="field">
-      <%= f.label :name, 'Назва' %>
-      <br/>
-      <%= f.text_field :name %>
-    </div>
-    <div class="field">
-      <%= f.label :state_share, 'Держчастка,%' %>
-      <br/>
-      <%= f.text_field :state_share %>
-    </div>
-    <div class="field">
-      <%= f.label :state_share_count, 'Держчастка, кількість акцій' %>
-      <br/>
-      <%= f.text_field :state_share_count %>
-    </div>
-    <div class="field">
-      <%= f.label :SF, 'СФ' %>
-      <br/>
-      <%= f.text_field :SF %>
-    </div>
-    <div class="field">
-      <%= f.label :region, 'Регіон' %>
-      <br/>
-      <%= f.text_field :region %>
-    </div>
-    <div class="field">
-      <%= f.label :management, 'Контролює управління КПД' %>
-      <br/>
-      <%= f.text_field :management %>
-    </div>
-    <div class="field">
-      <%= f.label :governing_body, 'Орган управління' %>
-      <br/>
-      <%= f.text_field :governing_body %>
-    </div>
-    <div class="field">
-      <%= f.label :in_the_management, 'В управлінні ФДМУ / Міністерств' %>
-      <br/>
-      <%= f.text_field :in_the_management %>
-    </div>
-    <div class="field">
-      <%= f.label :type_of_business_entity, 'Тип господарського товариства' %>
-      <br/>
-      <%= f.text_field :type_of_business_entity %>
-    </div>
-    <div class="field">
-      <%= f.label :bankruptcy, 'Ознака банкрутства' %>
-      <br/>
-      <%= f.check_box :bankruptcy %>
-    </div>
-    <div class="field">
-      <%= f.label :form_of_shares, 'Форма існування акцій' %>
-      <br/>
-      <%= f.text_field :form_of_shares %>
-    </div>
-    <div class="field">
-      <%= f.label :strategist, 'Стратег' %>
-      <br/>
-      <%= f.text_field :strategist %>
-    </div>
-    <div class="field">
-      <%= f.label :address, 'Адреса' %>
-      <br/>
-      <%= f.text_field :address %>
-    </div>
-    <div class="field">
-      <%= f.label :nominal_value_of_shares, 'Ном.варт.акції' %>
-      <br/>
-      <%= f.text_field :nominal_value_of_shares %>
-    </div>
-    <div class="field">
-      <%= f.label :nominal_value_of_all_shares, 'Ном.варт.акцій (держ.частки)' %>
-      <br/>
-      <%= f.text_field :nominal_value_of_all_shares %>
-    </div>
-    <div class="field">
-      <%= f.label :EDRPOY2, 'Код ЄДРПОУ орг.упр.' %>
-      <br/>
-      <%= f.text_field :EDRPOY2 %>
-    </div>
-    <div class="field">
-      <%= f.label :KVED, 'КВЕД' %>
-      <br/>
-      <%= f.text_field :KVED %>
-    </div>
-    <div class="field">
-      <%= f.label :mailbox_index, 'Пошт. Індекс' %>
-      <br/>
-      <%= f.text_field :mailbox_index %>
-    </div>
+    <table>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr>
+        <td><b>ЕДРПОУ</b></td>
+        <td><%= f.text_field :EDRPOY %></td>
+      </tr>
+      <tr>
+        <td>
+          <b>Назва</b></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td><b>Держчастка,%</b></td>
+        <td><%= f.text_field :state_share %></td>
+      </tr>
+      <tr>
+        <td><b>Держчастка, кількість акцій</b></td>
+        <td><%= f.text_field :state_share_count %></td>
+      </tr>
+      <tr>
+        <td><b>СФ</b></td>
+        <td><%= f.text_field :SF %></td>
+      </tr>
+      <tr>
+        <td><b>Регіон</b></td>
+        <td><%= f.text_field :region %></td>
+      </tr>
+
+      <tr>
+        <td><b>Контролює управління КПД</b></td>
+        <td><%= f.text_field :management %></td>
+      </tr>
+
+      <tr>
+        <td><b>Орган управління</b></td>
+        <td><%= f.text_field :governing_body %></td>
+      </tr>
+
+      <tr>
+        <td><b>В управлінні ФДМУ / Міністерств</b></td>
+        <td><%= f.text_field :in_the_management %></td>
+      </tr>
+
+      <tr>
+        <td><b>Тип господарського товариства</b></td>
+        <td><%= f.text_field :type_of_business_entity %></td>
+      </tr>
+
+      <tr>
+        <td><b>Ознака банкрутства</b></td>
+        <td><%= f.check_box :bankruptcy %></td>
+      </tr>
+
+      <tr>
+        <td><b>Форма існування акцій</b></td>
+        <td><%= f.text_field :form_of_shares %></td>
+      </tr>
+
+      <tr>
+        <td><b>Стратег</b></td>
+        <td><%= f.text_field :strategist %></td>
+      </tr>
+
+      <tr>
+        <td><b>Адреса</b></td>
+        <td><%= f.text_field :address %></td>
+      </tr>
+
+      <tr>
+        <td><b>Ном.варт.акції</b></td>
+        <td><%= f.text_field :nominal_value_of_shares %></td>
+      </tr>
+
+      <tr>
+        <td><b>Ном.варт.акцій (держ.частки)</b></td>
+        <td><%= f.text_field :nominal_value_of_all_shares %></td>
+      </tr>
+
+      <tr>
+        <td><b>Код ЄДРПОУ орг.упр.</b></td>
+        <td><%= f.text_field :EDRPOY2 %></td>
+      </tr>
+
+      <tr>
+        <td><b>КВЕД</b></td>
+        <td><%= f.text_field :KVED %></td>
+      </tr>
+
+      <tr>
+        <td><b>Пошт. Індекс</b></td>
+        <td><%= f.text_field :mailbox_index %></td>
+      </tr>
+    </table>
 
     <div class="actions">
       <%= f.submit %>
