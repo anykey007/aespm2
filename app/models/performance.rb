@@ -43,55 +43,55 @@ class Performance
   end
 
   def normal_total_wage_arrears?
-    total_wage_arrears == 0
+    total_wage_arrears && total_wage_arrears == 0
   end
 
   def normal_social_charges?
-    social_charges > 0
+    social_charges && social_charges > 0
   end
 
   def normal_net_profit?
-    net_profit > 0
+    net_profit && net_profit > 0
   end
 
   def normal_net_profit_or_loss?
-    net_profit_or_loss > 0
+    net_profit_or_loss && net_profit_or_loss > 0
   end
 
   def normal_part_dividendiv_accrued_on_shares?
-    part_dividendiv_accrued_on_shares > 0
+    part_dividendiv_accrued_on_shares && part_dividendiv_accrued_on_shares > 0
   end
 
   def normal_part_net_income_is_transferred_to_the_state_budget?
-    part_net_income_is_transferred_to_the_state_budget > 0
+    part_net_income_is_transferred_to_the_state_budget && part_net_income_is_transferred_to_the_state_budget > 0
   end
 
   def normal_rate_of_return_of?
-    rate_of_return_of > 0.01
+    rate_of_return_of && rate_of_return_of > 0.01
   end
 
   def normal_absolute_liquidity_ratio?
-    absolute_liquidity_ratio >= 0.2 && absolute_liquidity_ratio <=0.35
+    absolute_liquidity_ratio && absolute_liquidity_ratio >= 0.2 && absolute_liquidity_ratio <=0.35
   end
 
   def normal_ratio_of_own_funds?
-    ratio_of_own_funds > 0.1
+    ratio_of_own_funds && ratio_of_own_funds > 0.1
   end
 
   def normal_ratio_of_total_liquidity?
-    ratio_of_total_liquidity >= 0.2 && ratio_of_total_liquidity <=0.35
+    ratio_of_total_liquidity && ratio_of_total_liquidity >= 0.2 && ratio_of_total_liquidity <=0.35
   end
 
   def normal_ratio_coating?
-    ratio_coating > 1
+    ratio_coating && ratio_coating > 1
   end
 
   def normal_ratio_of_financial_stability?
-    ratio_of_financial_stability > 1
+    ratio_of_financial_stability && ratio_of_financial_stability > 1
   end
 
   def normal_ratio_return_on_assets?
-    ratio_return_on_assets > 0
+    ratio_return_on_assets && ratio_return_on_assets > 0
   end
 
 
