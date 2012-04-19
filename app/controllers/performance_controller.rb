@@ -19,22 +19,8 @@ class PerformanceController < ApplicationController
     @period2 = Date.civil(DateTime.current.year, 3.to_i, 25.to_i)
     @period2 = Date.civil(params[:period2][:year].to_i, @kvartal2*3, 25.to_i) if params[:period2]
 
-#    logger.debug '-'*20
-#    logger.debug @period.inspect
-#
-#    logger.debug '-'*20
-#    logger.debug @period2.inspect
-#    logger.debug '-'*20
-
-
-    @performances = @company.performances(@period, @period2)
-    @x_axis = x_axis(@period, @period2)
-#
-#    @x_axis= ["Jan", 'Feb', 'Mar', 'Apr', 'May']
-    logger.debug '-'*50
-    logger.debug @x_axis.inspect
-
-
+    @performances = @company.performances(@period, @period2)  if params[:period] && params[:period2]
+    @x_axis = x_axis(@period, @period2) if params[:period] && params[:period2]
   end
 
   def x_axis(start_period, end_period)

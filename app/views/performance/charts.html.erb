@@ -1,5 +1,6 @@
 <script type="text/javascript" charset="utf-8">
-    $(function () {
+ <% if @performances %>
+  $(function () {
         new Highcharts.Chart({
             chart: { renderTo: 'fin_chart' },
             title: { text: 'Показники фінансової діяльності' },
@@ -126,6 +127,9 @@
 
         });
     });
+
+ <% end %>
+
 </script>
 
 <%= form_for (company_performance_index_path(@company)) do |f| %>
