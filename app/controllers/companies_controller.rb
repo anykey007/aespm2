@@ -82,3 +82,4 @@ class CompaniesController < ApplicationController
     end
   end
 end
+

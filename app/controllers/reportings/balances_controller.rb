@@ -120,3 +120,4 @@ class Reportings::BalancesController < ApplicationController
     end
   end
 end
+

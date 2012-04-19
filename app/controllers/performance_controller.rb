@@ -10,10 +10,14 @@ class PerformanceController < ApplicationController
 
   def charts
     @company = current_user.companies.find(params[:company_id])
+    @kvartal1 = 1
+    @kvartal1 = params[:kvartal1].to_i
     @period = Date.civil(-1.year.from_now.year, 3.to_i, 25.to_i)
-    @period = Date.civil(params[:period][:year].to_i, 3.to_i, 25.to_i) if params[:period]
+    @period = Date.civil(params[:period][:year].to_i, @kvartal1*3, 25.to_i) if params[:period]
+    @kvartal2 = 1
+    @kvartal2 = params[:kvartal2].to_i
     @period2 = Date.civil(DateTime.current.year, 3.to_i, 25.to_i)
-    @period2 = Date.civil(params[:period2][:year].to_i, 3.to_i, 25.to_i) if params[:period2]
+    @period2 = Date.civil(params[:period2][:year].to_i, @kvartal2*3, 25.to_i) if params[:period2]
 
 #    logger.debug '-'*20
 #    logger.debug @period.inspect
@@ -43,3 +47,4 @@ class PerformanceController < ApplicationController
     x_list
   end
 end
+

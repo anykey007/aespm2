@@ -13,6 +13,10 @@ class Reportings::Labor < Report
     labor.code_2010 = values.by_code("2010").first if !values.by_code("2010").first.nil?
   end
 
+  after_save do |labor|
+    logger.debug 'labor was saved'
+  end
+
 
 #  def code_1040
 #    values.by_code("1040").first if !values.by_code("1040").first.nil?
@@ -28,3 +32,4 @@ class Reportings::Labor < Report
 
 
 end
+

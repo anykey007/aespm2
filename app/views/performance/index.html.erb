@@ -11,151 +11,199 @@
 <% end %>
 <%= link_to 'Назад', @company %> |
 <%= link_to "Графіки", company_performance_charts_path(@company), :title => "" %>
-
+<h3>Підприємство <%= @company.name %> </h3>
 
 <table>
   <tr>
     <th>Назва</th>
     <th>Значення</th>
+    <th>Норматив, порогове значення</th>
   </tr>
   <tr>
-    <td colspan="2">
-      <h1>Некомерційні показники</h1>
+    <td colspan="3">
+      <h1 style="text-align:center;">Некомерційні показники</h1>
     </td>
   </tr>
-  <tr>
+  <tr title="Середньооблікова кількість штатних працівників розраховується на підставі щоденних даних про облікову кількість штатних працівників, які повинні уточнюватися відповідно до наказів про прийняття, переведення працівника на іншу роботу та припинення трудового договору.">
+
     <td>
       <b>Середньооблікова кількість штатних працівників</b>
     </td>
-    <td>
-      <%= @performance.average_number_of_staff ? @performance.average_number_of_staff.round(2) : 'нет данных' %>
+    <% color = 'green' %>
+    <td style="background-color:<%= color %>;">
+      <%= @performance.average_number_of_staff ? @performance.average_number_of_staff.round(0).to_s+" чол." : 'нет данных' %>
     </td>
+    <td></td>
   </tr>
-  <tr>
+  <tr title="Середня заробітна плата - економічний показник, який характеризує розмір нарахованої заробітної плати, яка припадає на одного працівника підприємства, організації. Визначається поділом загальної суми нарахованої заробітної плати на середню чисельність працівників.">
     <td>
       <b>Середня заробітна плата</b>
     </td>
-    <td>
-      <%= @performance.average_salary ? @performance.average_salary.round(2) : 'нет данных' %>
+    <% color = 'green' %>
+    <td style="background-color:<%= color %>;">
+      <%= @performance.average_salary ? @performance.average_salary.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
+    <td></td>
   </tr>
   <tr>
     <td>
       <b>Сума заборгованості із заробітної плати</b>
     </td>
-    <td>
-      <%= @performance.total_wage_arrears ? @performance.total_wage_arrears.round(2) : 'нет данных' %>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_total_wage_arrears? %>
+    <td style="background-color:<%= color %>;">
+      <%= @performance.total_wage_arrears ? @performance.total_wage_arrears.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
+    <td>0</td>
   </tr>
   <tr>
     <td>
       <b>Відрахування на соціальні заходи</b>
     </td>
-    <td>
-      <%= @performance.social_charges ? @performance.social_charges.round(2) : 'нет данных' %>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_social_charges? %>
+    <td style="background-color:<%= color %>;">
+      <%= @performance.social_charges ? @performance.social_charges.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
+    <td>більше 0</td>
   </tr>
   <tr>
-    <td colspan="2">
-      <h1>Комерційні показники</h1>
+    <td colspan="3">
+      <h1 style="text-align:center;">Комерційні показники</h1>
     </td>
   </tr>
   <tr>
     <td>
       <b>Чистий дохід (виручка) від реалізації продукції (товарів, робіт, послуг)</b>
     </td>
-    <td>
-      <%= @performance.net_profit ? @performance.net_profit.round(2) : 'нет данных' %>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_net_profit? %>
+    <td style="background-color:<%= color %>;">
+      <%= @performance.net_profit ? @performance.net_profit.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
+    <td>більше 0</td>
   </tr>
   <tr>
     <td>
-      <b>Чистий прибуток (збиток)</b>
+      <b>Чистий прибуток</b>
     </td>
-    <td>
-      <%= @performance.net_profit_or_loss ? @performance.net_profit_or_loss.round(2) : 'нет данных' %>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_net_profit_or_loss? %>
+    <td style="background-color:<%= color %>;">
+      <%= @performance.net_profit_or_loss ? @performance.net_profit_or_loss.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
+    <td>більше 0</td>
   </tr>
   <tr>
     <td>
       <b>Частина дівідендів, нарахованих на акції</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_part_dividendiv_accrued_on_shares? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.part_dividendiv_accrued_on_shares ?
-                  @performance.part_dividendiv_accrued_on_shares.round(2) : 'нет данных' %>
+                  @performance.part_dividendiv_accrued_on_shares.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
+    <td>більше 0</td>
   </tr>
   <tr>
     <td>
       <b>Частина чистого прибутку (доходу), що перераховується до державного бюджету</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_part_net_income_is_transferred_to_the_state_budget? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.part_net_income_is_transferred_to_the_state_budget ?
-                  @performance.part_net_income_is_transferred_to_the_state_budget.round(2) : 'нет данных' %>
+                  @performance.part_net_income_is_transferred_to_the_state_budget.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
+    <td>більше 0</td>
   </tr>
   <tr>
-    <td colspan="2">
-      <h1>Показники фінансової діяльності</h1>
+    <td colspan="3">
+      <h1 style="text-align:center;">Показники фінансової діяльності</h1>
     </td>
   </tr>
-  <tr>
+  <tr title="Коефіцієнт рентабельності діяльності характеризує ефективність господарської діяльності підприємства.">
     <td>
       <b>Коефіцієнт рентабельності діяльності</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_rate_of_return_of? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.rate_of_return_of ? @performance.rate_of_return_of.round(2) : 'нет данных' %>
     </td>
+    <td>більше 0,01</td>
   </tr>
-  <tr>
+  <tr title="Коефіцієнт абсолютної ліквідності - показник, що характеризує ту частину короткотермінових фінансових зобов'язань підприємства, яка може бути сплачена за рахунок першокласних ліквідних активів (грошових коштів та їх еквівалентів), тобто спроможність підприємства негайно погасити свою короткотермінову кредиторську заборгованість.">
     <td>
       <b>Коефіцієнт абсолютної ліквідності</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_absolute_liquidity_ratio? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.absolute_liquidity_ratio ? @performance.absolute_liquidity_ratio.round(2) : 'нет данных' %>
     </td>
+    <td>0,2-0,35</td>
   </tr>
-  <tr>
+  <tr title="Коефіцієнт забезпеченості власними коштами характеризує рівень забезпечення підприємства власними коштами.">
     <td>
       <b>Коефіцієнт забезпеченості власними коштами</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_ratio_of_own_funds? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.ratio_of_own_funds ? @performance.ratio_of_own_funds.round(2) : 'нет данных' %>
     </td>
+    <td>більше 0,1</td>
   </tr>
   <tr>
     <td>
       <b>Коефіцієнт загальної ліквідності</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_ratio_of_total_liquidity? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.ratio_of_total_liquidity ? @performance.ratio_of_total_liquidity.round(2) : 'нет данных' %>
     </td>
+    <td>0,2–0,25</td>
   </tr>
-  <tr>
+  <tr title="Коефіцієнт покриття показує достатність ресурсів підприємства, які можуть бути використані для погашення його поточних зобов'язань.">
     <td>
       <b>Коефіцієнт покриття</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_ratio_coating? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.ratio_coating ? @performance.ratio_coating.round(2) : 'нет данных' %>
     </td>
+    <td>більше 1</td>
   </tr>
-  <tr>
+  <tr title="Коефіцієнт фінансової стійкості характеризує здатність підприємства залучати зовнішні джерела фінансування.">
     <td>
       <b>Коефіцієнт фінансової стійкості</b>
     </td>
-    <td>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_ratio_of_financial_stability? %>
+    <td style="background-color:<%= color %>;">
       <%= @performance.ratio_of_financial_stability ? @performance.ratio_of_financial_stability.round(2) : 'нет данных' %>
     </td>
+    <td>більше 1</td>
   </tr>
-  <tr>
+  <tr title="Коефіцієнт рентабельності активів характеризує ефективність використання активів підприємства.">
     <td>
       <b>Коефіцієнт рентабельності активів</b>
     </td>
-    <td>
-      <%= @performance.ratio_return_on_assets ? @performance.ratio_return_on_assets.round(2) : 'нет данных' %>
+    <% color = 'green'
+    color = 'red' if !@performance.normal_ratio_return_on_assets? %>
+    <td style="background-color:<%= color %>;">
+      <%= @performance.ratio_return_on_assets ? @performance.ratio_return_on_assets.round(5) : 'нет данных' %>
     </td>
+    <td>більше 0</td>
   </tr>
 </table>
 
-<%= link_to 'Назад', @company %>
+<p>Управління підприємством <b><%= @performance.assessment %></b></p>
+
+<%= link_to 'Назад', @company %> |
+<%= link_to "Графіки", company_performance_charts_path(@company), :title => "" %>
 

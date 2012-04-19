@@ -11,6 +11,90 @@ class Performance
 
   attr_accessor :company, :period, :balance, :labor, :finresult, :plan
 
+
+  def assessment
+    count_all = 13.0
+    count_bingo = 0.0
+    count_bingo+=1 if normal_total_wage_arrears?
+    count_bingo+=1 if normal_social_charges?
+    count_bingo+=1 if normal_net_profit?
+    count_bingo+=1 if normal_net_profit_or_loss?
+    count_bingo+=1 if normal_part_dividendiv_accrued_on_shares?
+    count_bingo+=1 if normal_part_net_income_is_transferred_to_the_state_budget?
+    count_bingo+=1 if normal_rate_of_return_of?
+    count_bingo+=1 if normal_absolute_liquidity_ratio?
+    count_bingo+=1 if normal_ratio_of_own_funds?
+    count_bingo+=1 if normal_ratio_of_total_liquidity?
+    count_bingo+=1 if normal_ratio_coating?
+    count_bingo+=1 if normal_ratio_of_financial_stability?
+    count_bingo+=1 if normal_ratio_return_on_assets?
+
+
+    result = count_bingo/count_all
+    case result
+      when 0.75..1
+        return 'ефективне'
+      when 0.5..0.74
+        return 'задовільне'
+      when 0.0..0.49
+        return 'неефективне'
+    end
+
+  end
+
+  def normal_total_wage_arrears?
+    total_wage_arrears == 0
+  end
+
+  def normal_social_charges?
+    social_charges > 0
+  end
+
+  def normal_net_profit?
+    net_profit > 0
+  end
+
+  def normal_net_profit_or_loss?
+    net_profit_or_loss > 0
+  end
+
+  def normal_part_dividendiv_accrued_on_shares?
+    part_dividendiv_accrued_on_shares > 0
+  end
+
+  def normal_part_net_income_is_transferred_to_the_state_budget?
+    part_net_income_is_transferred_to_the_state_budget > 0
+  end
+
+  def normal_rate_of_return_of?
+    rate_of_return_of > 0.01
+  end
+
+  def normal_absolute_liquidity_ratio?
+    absolute_liquidity_ratio >= 0.2 && absolute_liquidity_ratio <=0.35
+  end
+
+  def normal_ratio_of_own_funds?
+    ratio_of_own_funds > 0.1
+  end
+
+  def normal_ratio_of_total_liquidity?
+    ratio_of_total_liquidity >= 0.2 && ratio_of_total_liquidity <=0.35
+  end
+
+  def normal_ratio_coating?
+    ratio_coating > 1
+  end
+
+  def normal_ratio_of_financial_stability?
+    ratio_of_financial_stability > 1
+  end
+
+  def normal_ratio_return_on_assets?
+    ratio_return_on_assets > 0
+  end
+
+
   # Некомерційні показники
 
   # Середньооблікова кількість штатних працівників
@@ -222,3 +306,4 @@ class Performance
   end
 
 end
+
