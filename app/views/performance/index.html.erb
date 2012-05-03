@@ -3,7 +3,7 @@
     <div class="field">
       <%= label_tag 'Оберіть дату' %>
       <br/>
-      <%= select_date Date.today, :prefix => :period %>
+      <%= select_date @period, :prefix => :period %>
     </div>
     <div class="actions">
       <%= f.submit 'Показати' %>
