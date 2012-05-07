@@ -9,13 +9,14 @@ class Line < ActiveRecord::Base
 
   validates_presence_of :name
 
- def disabled?
-   self && (childs.size>0 || total)
- end
+  def disabled?
+    self && (childs.size>0 || total)
+  end
 
   def sign_plus?
     sign=='plus'
   end
+
   def sign_minus?
     sign=='minus'
   end
@@ -36,12 +37,15 @@ class Line < ActiveRecord::Base
   end
 
   def name_for_select_tag
-    lines=parents_count
-    if total && lines>1
-      lines=lines-1
+    if self
+      lines=parents_count
+      if total && lines>1
+        lines=lines-1
+      end
+      "--"*lines+name
     end
-    "--"*lines+name
   end
+
   def name_for_table
     "--"*parents_count+name
   end
