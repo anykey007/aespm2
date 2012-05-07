@@ -12,7 +12,8 @@
 <%= link_to 'Назад', @company %> |
 <%= link_to "Графіки", company_performance_charts_path(@company), :title => "" %>
 <h3>Підприємство <%= @company.name %> </h3>
-
+<% red = 'krestik.png' %>
+<% green = 'galochka2.png' %>
 <table>
   <tr>
     <th>Назва</th>
@@ -29,8 +30,9 @@
     <td>
       <b>Середньооблікова кількість штатних працівників</b>
     </td>
-    <% color = 'green' %>
+    <% color = green %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.average_number_of_staff ? @performance.average_number_of_staff.round(0).to_s+" чол." : 'нет данных' %>
     </td>
     <td></td>
@@ -39,8 +41,9 @@
     <td>
       <b>Середня заробітна плата</b>
     </td>
-    <% color = 'green' %>
+    <% color = green %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.average_salary ? @performance.average_salary.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
     <td></td>
@@ -49,9 +52,10 @@
     <td>
       <b>Сума заборгованості із заробітної плати</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_total_wage_arrears? %>
+    <% color = green
+    color = red if !@performance.normal_total_wage_arrears? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.total_wage_arrears ? @performance.total_wage_arrears.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
     <td>0</td>
@@ -60,9 +64,10 @@
     <td>
       <b>Відрахування на соціальні заходи</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_social_charges? %>
+    <% color = green
+    color = red if !@performance.normal_social_charges? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.social_charges ? @performance.social_charges.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
     <td>більше 0</td>
@@ -76,9 +81,10 @@
     <td>
       <b>Чистий дохід (виручка) від реалізації продукції (товарів, робіт, послуг)</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_net_profit? %>
+    <% color = green
+    color = red if !@performance.normal_net_profit? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.net_profit ? @performance.net_profit.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
     <td>більше 0</td>
@@ -87,9 +93,10 @@
     <td>
       <b>Чистий прибуток</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_net_profit_or_loss? %>
+    <% color = green
+    color = red if !@performance.normal_net_profit_or_loss? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.net_profit_or_loss ? @performance.net_profit_or_loss.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
     <td>більше 0</td>
@@ -98,9 +105,10 @@
     <td>
       <b>Частина дівідендів, нарахованих на акції</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_part_dividendiv_accrued_on_shares? %>
+    <% color = green
+    color = red if !@performance.normal_part_dividendiv_accrued_on_shares? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.part_dividendiv_accrued_on_shares ?
                   @performance.part_dividendiv_accrued_on_shares.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
@@ -110,9 +118,10 @@
     <td>
       <b>Частина чистого прибутку (доходу), що перераховується до державного бюджету</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_part_net_income_is_transferred_to_the_state_budget? %>
+    <% color = green
+    color = red if !@performance.normal_part_net_income_is_transferred_to_the_state_budget? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.part_net_income_is_transferred_to_the_state_budget ?
                   @performance.part_net_income_is_transferred_to_the_state_budget.round(2).to_s+" тис.грн." : 'нет данных' %>
     </td>
@@ -127,9 +136,10 @@
     <td>
       <b>Коефіцієнт рентабельності діяльності</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_rate_of_return_of? %>
+    <% color = green
+    color = red if !@performance.normal_rate_of_return_of? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.rate_of_return_of ? @performance.rate_of_return_of.round(2) : 'нет данных' %>
     </td>
     <td>більше 0,01</td>
@@ -138,9 +148,10 @@
     <td>
       <b>Коефіцієнт абсолютної ліквідності</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_absolute_liquidity_ratio? %>
+    <% color = green
+    color = red if !@performance.normal_absolute_liquidity_ratio? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.absolute_liquidity_ratio ? @performance.absolute_liquidity_ratio.round(2) : 'нет данных' %>
     </td>
     <td>0,2-0,35</td>
@@ -149,9 +160,10 @@
     <td>
       <b>Коефіцієнт забезпеченості власними коштами</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_ratio_of_own_funds? %>
+    <% color = green
+    color = red if !@performance.normal_ratio_of_own_funds? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.ratio_of_own_funds ? @performance.ratio_of_own_funds.round(2) : 'нет данных' %>
     </td>
     <td>більше 0,1</td>
@@ -160,9 +172,10 @@
     <td>
       <b>Коефіцієнт загальної ліквідності</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_ratio_of_total_liquidity? %>
+    <% color = green
+    color = red if !@performance.normal_ratio_of_total_liquidity? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.ratio_of_total_liquidity ? @performance.ratio_of_total_liquidity.round(2) : 'нет данных' %>
     </td>
     <td>0,2–0,25</td>
@@ -171,9 +184,10 @@
     <td>
       <b>Коефіцієнт покриття</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_ratio_coating? %>
+    <% color = green
+    color = red if !@performance.normal_ratio_coating? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.ratio_coating ? @performance.ratio_coating.round(2) : 'нет данных' %>
     </td>
     <td>більше 1</td>
@@ -182,9 +196,10 @@
     <td>
       <b>Коефіцієнт фінансової стійкості</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_ratio_of_financial_stability? %>
+    <% color = green
+    color = red if !@performance.normal_ratio_of_financial_stability? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.ratio_of_financial_stability ? @performance.ratio_of_financial_stability.round(2) : 'нет данных' %>
     </td>
     <td>більше 1</td>
@@ -193,16 +208,17 @@
     <td>
       <b>Коефіцієнт рентабельності активів</b>
     </td>
-    <% color = 'green'
-    color = 'red' if !@performance.normal_ratio_return_on_assets? %>
+    <% color = green
+    color = red if !@performance.normal_ratio_return_on_assets? %>
     <td style="background-color:<%= color %>;">
+      <%= image_tag(color, :size => "16x16") %>
       <%= @performance.ratio_return_on_assets ? @performance.ratio_return_on_assets.round(5) : 'нет данных' %>
     </td>
     <td>більше 0</td>
   </tr>
 </table>
-<p style="font-size:10px;"><span style="background-color:green">&nbsp&nbsp&nbsp&nbsp&nbsp</span>  -  допустимые значения показателей</p>
-<p style="font-size:10px;"><span style="background-color:red">&nbsp&nbsp&nbsp&nbsp&nbsp</span>  -  недопустимые значения показателей</p>
+<p style="font-size:10px;"><%= image_tag(green, :size => "16x16") %>  -  допустимые значения показателей</p>
+<p style="font-size:10px;"><%= image_tag(red, :size => "16x16") %>  -  недопустимые значения показателей</p>
 <p>Управління підприємством <b><%= @performance.assessment %></b></p>
 
 <%= link_to 'Назад', @company %> |

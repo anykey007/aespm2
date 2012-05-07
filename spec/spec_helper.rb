@@ -1,3 +1,26 @@
+#module for helping controller specs
+module ValidUserHelper
+#  def signed_in_as_a_valid_user
+##    @user ||= FactoryGirl.create :user
+#    @user ||= create(:user)
+#    sign_in @user # method from devise:TestHelpers
+#    @user
+#  end
+end
+
+# module for helping request specs
+module ValidUserRequestHelper
+
+  # for use in request specs
+  def sign_in_as_a_valid_user
+    @user ||=  Factory :user, :password => "123456"
+#    @user = User.create!(email: "user1@gmail.com", password: "secret")
+#    @user = create(:user)
+    post_via_redirect user_session_path, 'user[email]' => @user.email, 'user[password]' => @user.password
+    @user
+  end
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -17,17 +40,33 @@ RSpec.configure do |config|
   # config.mock_with :mocha
   # config.mock_with :flexmock
   # config.mock_with :rr
+  config.mock_with :rspec
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+#  config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
 
   # If true, the base class of anonymous controllers will be inferred
   # automatically. This will be the default behavior in future versions of
   # rspec-rails.
   config.infer_base_class_for_anonymous_controllers = false
+  config.include ValidUserHelper, :type => :controller
+  config.include ValidUserRequestHelper, :type => :request
+  config.include Factory::Syntax::Methods
 end
+#def login_user
+#  @current_user ||= Factory :user, :password => "123456", :password_confirmation => "123456"
+#  login_as @current_user, :scope => :user
+#  # visit new_user_session_path
+#  # fill_in 'user_email', :with => @current_user.email
+#  # fill_in 'user_password', :with => "123456"
+#  # click_button 'Log in'
+#  # current_path.should == activities_path
+#  @current_user
+#end
+
+
