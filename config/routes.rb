@@ -28,7 +28,8 @@ AESPM::Application.routes.draw do
       resources :tanimotos do
         member do
           post '/show_compared' => 'tanimotos#show_compared', :as => "show_compared"
-          get '/compare' => 'tanimotos#compare', :as => "compare"          
+          get '/compare' => 'tanimotos#compare', :as => "compare"      
+          get '/tanimotos_by_company' => 'tanimotos#tanimotos_by_company', :as => "tanimotos_by_company"      
         end
       end
 

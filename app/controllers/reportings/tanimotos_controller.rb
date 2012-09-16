@@ -2,6 +2,10 @@
 class Reportings::TanimotosController < ApplicationController
   # GET /reportings/tanimotos
   # GET /reportings/tanimotos.json
+  def tanimotos_by_company
+    @company = current_user.companies.find(params[:other_company_id])    
+    @reportings_tanimotos = @company.tanimotos rescue []
+  end
 
   def compare
     @company = current_user.companies.find(params[:company_id])

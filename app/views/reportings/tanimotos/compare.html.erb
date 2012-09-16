@@ -14,3 +14,24 @@
   <%= submit_tag 'Сравнить' %>
 </div>
 <% end %>
+
+<script type="text/javascript">
+(function($){
+	$().ready(function(){
+
+
+    $('#compare_company_id').bind('change',function(){   
+      company = $("select#compare_company_id").val();
+      $.ajax({
+          type: "GET",
+          url: 'tanimotos_by_company',            
+          data: {
+                  other_company_id: company
+                }        
+      });
+     
+    });
+
+});
+})(jQuery);
+</script>
