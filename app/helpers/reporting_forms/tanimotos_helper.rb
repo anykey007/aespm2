@@ -1,0 +1,2 @@
+module ReportingForms::TanimotosHelper
+end

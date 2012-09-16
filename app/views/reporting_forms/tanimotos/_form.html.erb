@@ -1,0 +1,34 @@
+<%= form_for(@line) do |f| %>
+  <% if @line.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@line.errors.count, "error") %> prohibited this line from being saved:</h2>
+
+      <ul>
+      <% @line.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+   <div class="field">
+      <%= f.label :question, 'Запитання' %>
+      <br/>
+      <%= f.text_area :question, :size=>"40x6" %>
+    </div>
+    <div class="field">
+      <%= f.label :answer1, 'Відповідь 1' %>
+      <br/>
+      <%= f.text_area :answer1, :size=>"40x6" %>
+    </div>
+    <div class="field">
+      <%= f.label :answer2, 'Відповідь 2' %>
+      <br/>
+      <%= f.text_area :answer2, :size=>"40x6" %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

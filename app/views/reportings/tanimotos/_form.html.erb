@@ -1,0 +1,36 @@
+<p style="text-align:right;">Одиниця виміру: тис. грн.</p>
+<%= form_for [@company, @report] do |f| %>
+    <% if @report.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@report.errors.count, "error") %> prohibited this reportings_balance from being saved:</h2>
+
+          <ul>
+            <% @report.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+    <div class="field">
+      <%= f.label :period, 'Період' %>
+      <br/>
+      <%= select_date @report.period, :prefix => :period %>
+    </div>
+    <div class="lines">
+      <table id="line_items">
+        <tr>
+          <th>Запитання</th>
+          <th>Відповідь</th>
+        </tr>
+        <%= f.fields_for :values, @line_values do |builder| %>
+            <tr class="<%= cycle :odd, :even %>">
+              <%= render "line_values_fields", :f => builder, :line=>builder.object.tanimoto_line %>
+            </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>
+

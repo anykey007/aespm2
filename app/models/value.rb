@@ -1,6 +1,7 @@
 class Value < ActiveRecord::Base
   belongs_to :report
   belongs_to :line, :class_name => "Line", :foreign_key => "line_id"
+  belongs_to :tanimoto_line, :class_name => "ReportingForms::Tanimoto", :foreign_key => "line_id"
   scope :childs, lambda { |child_ids| joins(:line).where('lines.id in (?)', child_ids) }
   scope :totals, joins(:line).where('lines.total=1')
   scope :by_code, lambda { |code| joins(:line).where('lines.code =?', code) }

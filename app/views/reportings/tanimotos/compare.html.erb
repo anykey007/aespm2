@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<h3>Підприємство <%= @company.name %> </h3>
+<%= link_to 'Редагувати', edit_company_reportings_tanimoto_path(params[:company_id], @report) %> |
+<%= link_to 'Зберегти в PDF', {:controller => "reportings/tanimotos", :action => "download_pdf", :company_id=>@company.id, :id=>@report.id} %> |
+<%= link_to 'Назад', company_reportings_tanimotos_path %>
+</br>
+
+<%= form_tag(:action=>'show_compared') do |f| %>
+<%= collection_select(:compare, :company_id, @other_companies, :id, :name) %>
+</br>
+<%= collection_select(:compare, :report_id, @reportings_tanimotos, :id, :period) %>
+</br>
+<div class="actions">
+  <%= submit_tag 'Сравнить' %>
+</div>
+<% end %>

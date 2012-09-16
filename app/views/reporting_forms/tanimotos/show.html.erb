@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <b>Запитання:</b>
+  <%= @line.question %>
+</p>
+<p>
+  <b>Відповідь 1:</b>
+  <%= @line.answer1 %>
+</p>
+<p>
+  <b>Відповідь 2:</b>
+  <%= @line.answer2 %>
+</p>
+
+
+<%= link_to 'Редагувати', edit_reporting_forms_tanimoto_path(@reporting_forms_tanimoto) %> |
+<%= link_to 'Назад', reporting_forms_tanimotos_path %>
+
+

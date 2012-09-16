@@ -6,6 +6,7 @@ class Company < ActiveRecord::Base
   has_many :labors, :class_name => "Reportings::Labor", :dependent => :destroy
   has_many :finresults, :class_name => "Reportings::Finresult", :dependent => :destroy
   has_many :b1s, :class_name => "Reportings::B1", :dependent => :destroy
+  has_many :tanimotos, :class_name => "Reportings::Tanimoto", :dependent => :destroy
 
   scope :group1, where('state_share = 100')
   scope :group2, where('state_share >= 50 and state_share < 100')

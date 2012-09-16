@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319184359) do
+ActiveRecord::Schema.define(:version => 20120916081210) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
@@ -47,6 +47,14 @@ ActiveRecord::Schema.define(:version => 20120319184359) do
     t.datetime "updated_at",                     :null => false
     t.boolean  "total",      :default => false
     t.string   "sign",       :default => "plus"
+  end
+
+  create_table "reporting_forms_tanimotos", :force => true do |t|
+    t.string   "question"
+    t.string   "answer1"
+    t.string   "answer2"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "reports", :force => true do |t|

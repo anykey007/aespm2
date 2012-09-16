@@ -1,0 +1,11 @@
+  <td style="width:60%">
+    <%= f.hidden_field :line_id %>
+    <%= line.question %>
+  </td>
+  <td>
+    <%= f.radio_button(:value1, 0, :checked => f.object.value1==0 ? true : false ) %>
+    <%= f.label(:value1, line.answer1) %>
+    </br>
+    <%= f.radio_button(:value1, 1, :checked => f.object.value1==1 ? true : false ) %>
+    <%= f.label(:value1, line.answer2) %>
+  </td>

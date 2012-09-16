@@ -1,11 +1,12 @@
 AESPM::Application.routes.draw do
 
+
   devise_for :users
 
   resources :index
 
   namespace :reporting_forms do
-    resources :balance_lines, :plan_lines, :labor_lines, :finresult_lines, :b1_lines
+    resources :balance_lines, :plan_lines, :labor_lines, :finresult_lines, :b1_lines, :tanimotos
   end
 
   resources :reporting_forms
@@ -24,6 +25,12 @@ AESPM::Application.routes.draw do
       resources :labors
       resources :finresults
       resources :b1s
+      resources :tanimotos do
+        member do
+          post '/show_compared' => 'tanimotos#show_compared', :as => "show_compared"
+          get '/compare' => 'tanimotos#compare', :as => "compare"          
+        end
+      end
 
     end
     match 'performance/index' => 'performance#index', :via => [:get, :post]
