@@ -16,9 +16,9 @@
 <% @lines.each do |line| %>
   <tr>
     <td style="width:20px;"><%= line.id %></td>
-    <td><%= line.question %></td>
-    <td><%= line.answer1 %></td>
-    <td><%= line.answer2 %></td>
+    <td style="width:50%"><%= line.question %></td>
+    <td style="width:20%"><%= line.answer1 %></td>
+    <td style="width:20%"><%= line.answer2 %></td>
     <td><%= link_to 'Перегляд', line %></td>
     <td><%= link_to 'Редагувати', edit_reporting_forms_tanimoto_path(line) %></td>
     <td><%= link_to 'Видалити', line, confirm: 'Ви впевнені?', method: :delete %></td>
