@@ -6,7 +6,7 @@ set :application, "aespm"
 set :scm, 'git'
 set :repository,  "git@github.com:anykey007/aespm2.git"
 set :git_enable_submodules, 1 # if you have vendored rails
-set :branch, 'master'
+set :branch, 'new_features'
 set :git_shallow_clone, 1
 set :scm_verbose, true
 
