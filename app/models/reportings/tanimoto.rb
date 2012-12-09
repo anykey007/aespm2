@@ -10,7 +10,7 @@ class Reportings::Tanimoto < Report
   			general_count+=1
   		end
   	end
-  	k = (general_count+0.0)/(values.length*2-general_count).round(2)
+  	k = ((general_count+0.0)/(values.length*2-general_count)).round(2)
   end
 
   def compare_tanimotos(report_ids)
@@ -23,7 +23,7 @@ class Reportings::Tanimoto < Report
           general_count+=1
         end
       end
-      coef = (general_count+0.0)/(values.length*2-general_count).round(2)
+      coef = ((general_count+0.0)/(values.length*2-general_count)).round(2)
       coefs << coef
     end
     Hash[*[report_ids,coefs].transpose.flatten]
