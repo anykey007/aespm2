@@ -10,6 +10,15 @@ gem 'capistrano-ext'
 gem 'capistrano'
 gem 'devise'
 gem "prawn"
+gem 'jquery-rails'
+gem 'unicorn'
+
+group :development do
+  gem "nifty-generators"
+  gem "capistrano"
+  gem "rvm-capistrano"
+  gem 'pry'
+end
 #gem 'wicked_pdf'
 # Gems used only for assets and not required
 # in production environments by default.
@@ -23,9 +32,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
-gem "nifty-generators", :group => :development
 gem "rspec-rails", "2.8.1", :group => [:test, :development]
 group :test do
   gem "factory_girl_rails", "1.7.0"
