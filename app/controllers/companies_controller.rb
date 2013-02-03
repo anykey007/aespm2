@@ -2,9 +2,12 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @group1 = current_user.companies.group1
-    @group2 = current_user.companies.group2
-    @group3 = current_user.companies.group3
+    all = current_user.companies
+    @group1 = all.group1
+    @group2 = all.group2
+    @group3 = all.group3
+    @others = all - @group1 - @group2 - @group3
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: (@group1+@group2+@group3) }

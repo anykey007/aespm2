@@ -15,4 +15,4 @@
 /tmp
 
 /.idea
-#sdfdc
+db/schema.rb

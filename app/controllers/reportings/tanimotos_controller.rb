@@ -14,6 +14,11 @@ class Reportings::TanimotosController < ApplicationController
     @report = @company.tanimotos.find(params[:id])
     @reportings_tanimotos = @other_companies.first.tanimotos
 
+    if params[:compare] && params[:compare][:report_ids]
+      @report_ids = params[:compare][:report_ids].keys
+      @coefs = @report.compare_tanimotos(@report_ids)
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @report }

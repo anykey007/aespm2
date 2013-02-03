@@ -1,5 +1,28 @@
 <p id="notice"><%= notice %></p>
 <%= link_to 'Редагувати', edit_company_reportings_tanimoto_path(params[:company_id], @report) %> |
-<%= link_to 'Зберегти в PDF', {:controller => "reportings/tanimotos", :action => "download_pdf", :company_id=>@company.id, :id=>@report.id} %> |
+<%= link_to 'Розрахувати Коефіцієнт Танімото', compare_company_reportings_tanimoto_path(params[:company_id],@report) %> | 
 <%= link_to 'Назад', company_reportings_tanimotos_path %>
 </br>
+<div id="report_content" style="width:95%;">
+  </br>
+  <h3>Підприємство <%= @company.name %> </h3>
+
+  <h1 style="text-align:center;">Анкета "Стан корпоративного управління імітента" на <%= @report.period.strftime("%d.%m.%Y") %> </h1>
+  </br>
+  <table id="line_items">
+    <tr>
+      <th>Запитання</th>
+      <th>Відповідь</th>
+    </tr>
+    <% @report.values.each do |value| %>
+        <tr class="<%= cycle :odd, :even %>">
+          <td><%= value.tanimoto_line.question %></td>
+          <td><%= value.value1==0 ? value.tanimoto_line.answer1 : value.tanimoto_line.answer2 %></td>          
+        </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to 'Редагувати', edit_company_reportings_tanimoto_path(params[:company_id], @report) %> |
+<%= link_to 'Розрахувати Коефіцієнт Танімото', compare_company_reportings_tanimoto_path(params[:company_id],@report) %> | 
+<%= link_to 'Назад', company_reportings_tanimotos_path %>

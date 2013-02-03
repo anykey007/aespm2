@@ -12,8 +12,8 @@ set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 # set :rvm_ruby_string, 'ree' # Это указание на то, какой Ruby интерпретатор мы будем использовать.
 
 set :scm, :git # Используем git. Можно, конечно, использовать что-нибудь другое - svn, например, но общая рекомендация для всех кто не использует git - используйте git. 
-set :repository,  "git@git.assembla.com:travelclub_sources.git" # Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить их в deployment keys в настройках репозитария.
-set :branch, "staging" # Ветка из которой будем тянуть код для деплоя.
+set :repository,  "git@github.com:anykey007/aespm2.git" # Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить их в deployment keys в настройках репозитария.
+set :branch, "new_features" # Ветка из которой будем тянуть код для деплоя.
 set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
 
 role :web, domain
@@ -26,11 +26,6 @@ after 'deploy:update_code', :roles => :app do
   # Здесь для примера вставлен только один конфиг с приватными данными - database.yml. Обычно для таких вещей создают папку /srv/myapp/shared/config и кладут файлы туда. При каждом деплое создаются ссылки на них в нужные места приложения.
   run "rm -f #{current_release}/config/database.yml"
   run "ln -s #{deploy_to}/shared/config/database.yml #{current_release}/config/database.yml"
-
-  run "rm -rf #{current_release}/public/images/galleries/;"
-  run "rm -rf #{current_release}/public/images/thumbs/;"
-  run "ln -s #{deploy_to}/shared/public/images/galleries/ #{current_release}/public/images/galleries;"
-  run "ln -s #{deploy_to}/shared/public/images/thumbs/ #{current_release}/public/images/thumbs;"
 end
 after 'deploy', 'deploy:cleanup'
 # Далее идут правила для перезапуска unicorn. Их стоит просто принять на веру - они работают.
