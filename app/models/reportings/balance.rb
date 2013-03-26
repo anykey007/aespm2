@@ -4,7 +4,7 @@ class Reportings::Balance < Report
   end
 
   def total_lines
-    ReportingForms::BalanceLine.where(:total=>1)
+    ReportingForms::BalanceLine.where(:total=>true)
   end
 
   attr_accessor :code_230, :code_240, :code_260, :code_280, :code_380, :code_480, :code_620

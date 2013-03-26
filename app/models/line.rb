@@ -1,10 +1,10 @@
 class Line < ActiveRecord::Base
-  has_many :childs, :class_name => "Line", :foreign_key => "parent_id", :conditions => {:total => 0}
+  has_many :childs, :class_name => "Line", :foreign_key => "parent_id", :conditions => {:total => false}
   belongs_to :parent, :class_name => "Line", :foreign_key => "parent_id"
 
   has_many :values, :class_name => "Value", :dependent => :destroy
 
-  scope :without_line, lambda { |line_id| where("id <> ? and total <> 1", line_id) }
+  scope :without_line, lambda { |line_id| where(:id!=line_id, :total=>false) }
 
 
   validates_presence_of :name
