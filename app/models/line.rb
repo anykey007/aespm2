@@ -1,5 +1,5 @@
 class Line < ActiveRecord::Base
-  has_many :childs, :class_name => "Line", :foreign_key => "parent_id", :conditions => "total = 0"
+  has_many :childs, :class_name => "Line", :foreign_key => "parent_id", :conditions => {:total => 0}
   belongs_to :parent, :class_name => "Line", :foreign_key => "parent_id"
 
   has_many :values, :class_name => "Value", :dependent => :destroy
