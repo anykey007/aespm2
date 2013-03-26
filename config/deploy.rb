@@ -20,6 +20,12 @@ role :web, domain
 role :app, domain
 role :db,  domain, :primary => true
 
+before 'deploy:setup', :roles => :app do
+  task :prepare do
+    run "mkdir -p /srv/#{application}/releases"
+  end
+end
+
 before 'deploy:setup', 'rvm:install_rvm', 'rvm:install_ruby' # интеграция rvm с capistrano настолько хороша, что при выполнении cap deploy:setup установит себя и указанный в rvm_ruby_string руби.
 
 after 'deploy:update_code', :roles => :app do
