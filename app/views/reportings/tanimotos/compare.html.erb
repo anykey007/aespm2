@@ -13,7 +13,11 @@
   <tr>
     <th>Підприємство</th>    
     <th>ЕДРПОУ</th>
-    <th>Анкети/Коефіцієнт</th>
+    <th>
+      Анкети/Коефіцієнт
+      </br>
+      <input id="select_all" type="checkbox"><span>Выбрать все</span>
+    </th>
   </tr>
   <% @other_companies.each do |company| %>
   <tr class="<%= cycle :odd, :even %>">
@@ -51,6 +55,24 @@
 <script type="text/javascript">
 (function($){
 	$().ready(function(){
+
+    $('#select_all').change (function ()
+    {
+
+      if($(this).is(':checked')){
+        $.each($('input:checkbox'), function(i, v) {
+          v.checked = true;
+          $('#select_all').next().text('Убрать все');
+        });
+      }
+      else{
+        $.each($('input:checkbox'), function(i, v) {
+          v.checked = false;
+          $('#select_all').next().text('Выбрать все');          
+        });
+      }
+
+    });
 
 
     $('#compare_company_id').bind('change',function(){   
