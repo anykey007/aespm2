@@ -54,3 +54,10 @@ end
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 gem "mocha", :group => :test
+
+group :development do
+  gem 'pry'
+  gem 'pry-remote'
+  gem 'pry-stack_explorer'
+  gem 'pry-debugger'
+end
