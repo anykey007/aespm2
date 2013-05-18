@@ -6,7 +6,10 @@ class CompaniesController < ApplicationController
     @group1 = all.group1
     @group2 = all.group2
     @group3 = all.group3
-    @others = all - @group1 - @group2 - @group3
+    @group4 = all.group4
+    @group5 = all.group5
+    @group6 = all.group6
+    @others = all - @group1 - @group2 - @group3 - @group4 - @group5 - @group6
 
     respond_to do |format|
       format.html # index.html.erb

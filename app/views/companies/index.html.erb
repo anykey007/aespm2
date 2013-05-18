@@ -50,6 +50,48 @@
           </tr>
       <% end %>
   <% end %>
+  <% if @group4.any? %>
+      <tr>
+        <td colspan="5" class="td_company_group">Група 4</td>
+      </tr>
+      <% @group4.each do |company| %>
+          <tr>
+            <td><%= company.EDRPOY %></td>
+            <td><%= company.name %></td>
+            <td><%= link_to 'Перегляд', company %></td>
+            <td><%= link_to 'Редагувати', edit_company_path(company) %></td>
+            <td><%= link_to 'Видалити', company, confirm: 'Вы впевнені?', method: :delete %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <% if @group5.any? %>
+      <tr>
+        <td colspan="5" class="td_company_group">Група 5</td>
+      </tr>
+      <% @group5.each do |company| %>
+          <tr>
+            <td><%= company.EDRPOY %></td>
+            <td><%= company.name %></td>
+            <td><%= link_to 'Перегляд', company %></td>
+            <td><%= link_to 'Редагувати', edit_company_path(company) %></td>
+            <td><%= link_to 'Видалити', company, confirm: 'Вы впевнені?', method: :delete %></td>
+          </tr>
+      <% end %>
+  <% end %>
+  <% if @group6.any? %>
+      <tr>
+        <td colspan="5" class="td_company_group">Група 6</td>
+      </tr>
+      <% @group6.each do |company| %>
+          <tr>
+            <td><%= company.EDRPOY %></td>
+            <td><%= company.name %></td>
+            <td><%= link_to 'Перегляд', company %></td>
+            <td><%= link_to 'Редагувати', edit_company_path(company) %></td>
+            <td><%= link_to 'Видалити', company, confirm: 'Вы впевнені?', method: :delete %></td>
+          </tr>
+      <% end %>
+  <% end %>
   <% if @others.any? %>
       <tr>
         <td colspan="5" class="td_company_group">Группа не визначена</td>

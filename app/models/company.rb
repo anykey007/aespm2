@@ -9,8 +9,11 @@ class Company < ActiveRecord::Base
   has_many :tanimotos, :class_name => "Reportings::Tanimoto", :dependent => :destroy
 
   scope :group1, where('state_share = 100')
-  scope :group2, where('state_share >= 50 and state_share < 100')
-  scope :group3, where('state_share >= 25 and state_share < 50')
+  scope :group2, where('state_share >= 75 and state_share < 100')
+  scope :group3, where('state_share >= 50 and state_share < 75')
+  scope :group4, where('state_share >= 25 and state_share < 50')
+  scope :group5, where('state_share >= 10 and state_share < 25')
+  scope :group6, where('state_share >= 0 and state_share < 10')
 
   def generate_reports(start_period, end_period)
     while start_period <= end_period
