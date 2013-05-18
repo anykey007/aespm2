@@ -3,7 +3,7 @@ module Reportings::TanimotosHelper
   def coef_prefix(coef)
     case coef
       when 0..0.3
-        'ПБ'
+        'НП'
       when 0.31..0.59
         'УП'
       when 0.6..1 
