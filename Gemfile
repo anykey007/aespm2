@@ -27,9 +27,11 @@ group :assets do
   gem 'coffee-rails', '3.2.2'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-   gem 'therubyracer'
+  gem 'therubyracer'
+  gem "less-rails"
 
-  gem 'uglifier', '>= 1.0.3'
+  # gem 'uglifier', '>= 1.0.3'
+  gem 'twitter-bootstrap-rails'
 end
 
 gem "rspec-rails", "2.8.1", :group => [:test, :development]
