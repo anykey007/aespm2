@@ -3,54 +3,102 @@
 <%= link_to 'Редагувати', edit_company_reportings_tanimoto_path(params[:company_id], @report) %> |
 <%= link_to 'Назад', company_reportings_tanimotos_path %>
 </br>
-
-<%= form_tag(:action=>'compare') do |f| %>
-<h4>Значення коефіцієнта</h4>
-<p style="font-size:10px;"><span>0-0,3</span> - Не подібні (НП)</p>
-<p style="font-size:10px;"><span>0,31-0,59</span> - Умовна подібність (УП)</p>
-<p style="font-size:10px;"><span>0,6-1</span> - Безумовна подібність (БП)</p>
-<table id="line_items" style="width:600px;">
-  <tr>
-    <th>Підприємство</th>    
-    <th>ЕДРПОУ</th>
-    <th>
-      Анкети/Коефіцієнт
-      </br>
-      <input id="select_all" type="checkbox"><span>Выбрать все</span>
-    </th>
-  </tr>
-  <% @other_companies.each do |company| %>
-  <tr class="<%= cycle :odd, :even %>">
-    <td style="width:30%;">
-      <%= company.name %>
-    </td>
-    <td style="width:30%;">
-      <%= company.EDRPOY %>
-    </td>
-    <td style="width:40%;">
-      <% company.tanimotos.each do |report| %>
-        <div>
-          <%= report_checkbox(report, @report_ids) %>
-          <span>
-            <span>
-              <%= "/ #{@coefs[report.id.to_s]}" if @coefs && @coefs[report.id.to_s]%>
-            </span> 
-            <span>
-              <%= "(#{coef_prefix(@coefs[report.id.to_s])})" if @coefs && @coefs[report.id.to_s]%>
-            </span>            
-          </span>     
-        </div>
-      <% end %>
-    </td>
-
-  </tr>  
-  <% end %>
-</table>
 </br>
-<div class="actions">
-  <%= submit_tag 'Розрахувати' %>
+<div class='tabbable'></div>
+<ul class='nav nav-tabs'>
+  <li class='active'>
+    <a href="#tab1" data-toggle="tab">Розрахунки коефіцієнта</a>
+  </li>
+  <li>
+    <a href="#tab2" data-toggle="tab">Зведений звіт по підприємствах</a>
+  </li>
+</ul>
+<div class='tab-content'>
+  <div id='tab1' class='tab-pane active'>
+    <%= form_tag(:action=>'compare') do |f| %>
+      <h4>Значення коефіцієнта</h4>
+      <p style="font-size:10px;"><span>0-0,3</span> - Не подібні (НП)</p>
+      <p style="font-size:10px;"><span>0,31-0,59</span> - Умовна подібність (УП)</p>
+      <p style="font-size:10px;"><span>0,6-1</span> - Безумовна подібність (БП)</p>
+      <table id="line_items" style="width:600px;">
+        <tr>
+          <th>Підприємство</th>    
+          <th>ЕДРПОУ</th>
+          <th>
+            Анкети/Коефіцієнт
+            </br>
+            <input id="select_all" type="checkbox"><span>Выбрать все</span>
+          </th>
+        </tr>
+        <% @other_companies.each do |company| %>
+        <tr class="<%= cycle :odd, :even %>">
+          <td style="width:30%;">
+            <%= company.name %>
+          </td>
+          <td style="width:30%;">
+            <%= company.EDRPOY %>
+          </td>
+          <td style="width:40%;">
+            <% company.tanimotos.each do |report| %>
+              <div>
+                <%= report_checkbox(report, @report_ids) %>
+                <span>
+                  <span>
+                    <%= "/ #{@coefs[report.id.to_s]}" if @coefs && @coefs[report.id.to_s]%>
+                  </span> 
+                  <span>
+                    <%= "(#{coef_prefix(@coefs[report.id.to_s])})" if @coefs && @coefs[report.id.to_s]%>
+                  </span>            
+                </span>     
+              </div>
+            <% end %>
+          </td>
+
+        </tr>  
+        <% end %>
+      </table>
+      </br>
+      <div class="actions">
+        <%= submit_tag 'Розрахувати' %>
+      </div>
+    <% end %>
+  </div>
+  <div id='tab2' class='tab-pane'>
+    <table id="line_items" style="width:1000px;">
+        <tr>
+          <th>Підприємство</th>    
+          <th>ЕДРПОУ</th>
+          <th>Коефіцієнт</th>
+          <th>Рівень управління</th>
+        </tr>
+        <% @true_companies.each do |company| %>
+        <tr class="<%= cycle :odd, :even %>">
+          <td style="width:30%;">
+            <%= link_to company.name, company, :target=>"_blanck" %>
+          </td>
+          <td style="width:30%;">
+            <%= company.EDRPOY %>
+          </td>
+          <td style="width:40%;">
+            <% company.tanimotos.each do |report| %>
+              <span>
+                <%= "#{@coefs[report.id.to_s]}" if @coefs && @coefs[report.id.to_s]%>
+              </span> 
+              <span>
+                <%= "(#{coef_prefix(@coefs[report.id.to_s])})" if @coefs && @coefs[report.id.to_s]%>
+              </span>
+            <% end %>
+          </td>
+          <td>
+            <%= Performance.new(company.id, DateTime.current).try(:assessment) %>
+          </td>
+
+        </tr>  
+        <% end %>
+      </table>    
+  </div>
 </div>
-<% end %>
+
 
 <script type="text/javascript">
 (function($){

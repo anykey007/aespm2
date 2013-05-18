@@ -14,9 +14,17 @@ class Reportings::TanimotosController < ApplicationController
     @report = @company.tanimotos.find(params[:id])
     @reportings_tanimotos = @other_companies.first.tanimotos
 
+    @true_companies = []
     if params[:compare] && params[:compare][:report_ids]
       @report_ids = params[:compare][:report_ids].keys
       @coefs = @report.compare_tanimotos(@report_ids)
+      @true_report_ids = @coefs.find_all{|key, value| value >= 0.6}.map{|id| id[0]}
+
+      @other_companies.each do |company|
+        company.tanimotos.each do |report|
+          @true_companies << company if @true_report_ids.include? report.id.to_s
+        end
+      end
     end
 
     respond_to do |format|
