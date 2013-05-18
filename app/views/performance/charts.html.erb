@@ -10,7 +10,7 @@
                 categories: <%= raw @x_axis %>
             },
             yAxis: {
-                title: { text: 'Одиниць'}
+                title: { text: 'ум. одиниць'}
             },
 //            plotOptions: {
 //                line: {
@@ -85,7 +85,7 @@
 
         new Highcharts.Chart({
             chart: { renderTo: 'nocomerce_chart' },
-            title: { text: 'Некомерційні показники' },
+            title: { text: 'ФОП' },
             xAxis: {
                 categories: <%= raw @x_axis %>
             },
@@ -111,7 +111,7 @@
 
         new Highcharts.Chart({
             chart: { renderTo: 'average_number_of_staff' },
-            title: { text: 'Некомерційні показники' },
+            title: { text: 'Динаміка персоналу' },
             xAxis: {
                 categories: <%= raw @x_axis %>
             },
