@@ -4,7 +4,8 @@ gem 'rails', '3.2.1'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'pg'
+# gem 'pg'
+gem 'mysql2', '< 0.3'
 gem 'capistrano-ext'
 gem 'capistrano'
 gem 'devise'
@@ -13,7 +14,7 @@ gem 'jquery-rails'
 gem 'unicorn'
 
 group :development do
-  gem 'mysql2'
+  # gem 'mysql2'
   gem "nifty-generators"
   gem "capistrano"
   gem "rvm-capistrano"
