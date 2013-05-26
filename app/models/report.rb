@@ -36,13 +36,13 @@ class Report < ActiveRecord::Base
   def save_and_update_parents
     self.save!
     self.update_parent_in_values
-    self.update_total_values
+    # self.update_total_values
   end
 
   def update_attributes_and_update_parents(params)
     self.update_attributes(params)
     self.update_parent_in_values
-    self.update_total_values
+    # self.update_total_values
   end
 
 
