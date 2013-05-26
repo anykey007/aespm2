@@ -1,13 +1,7 @@
 <h1>Підприємства</h1>
 
 <table>
-  <tr>
-    <th>ЕДРПОУ</th>
-    <th>Назва</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <%= render :partial=>'companies/simple_search' %>
   <% if @group1.any? %>
       <tr>
         <td colspan="5" class="td_company_group">Група 1</td>

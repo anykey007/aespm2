@@ -2,7 +2,10 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    all = current_user.companies
+    @search = current_user.companies.search(params[:q])
+    @search.build_condition if @search.conditions.empty?
+    @search.sorts = 'EDRPOY ask' if @search.sorts.empty?
+    all ||= @search.result
     @group1 = all.group1
     @group2 = all.group2
     @group3 = all.group3

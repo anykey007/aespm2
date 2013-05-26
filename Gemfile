@@ -12,6 +12,8 @@ gem 'devise'
 gem "prawn"
 gem 'jquery-rails'
 gem 'unicorn'
+gem 'ransack'
+gem "haml", ">= 3.1.7"
 
 group :development do
   # gem 'mysql2'
@@ -19,6 +21,7 @@ group :development do
   gem "capistrano"
   gem "rvm-capistrano"
   gem 'pry'
+  gem "haml-rails", ">= 0.3.5"
 end
 #gem 'wicked_pdf'
 # Gems used only for assets and not required
