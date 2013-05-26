@@ -19,12 +19,15 @@
     <div class="lines">
       <table id="line_items">
         <tr>
+          <th>#</th>
           <th>Запитання</th>
           <th>Відповідь</th>
         </tr>
+        <% i=0 %>
         <%= f.fields_for :values, @line_values do |builder| %>
+           <% i+=1 %>
             <tr class="<%= cycle :odd, :even %>">
-              <%= render "line_values_fields", :f => builder, :line=>builder.object.tanimoto_line %>
+              <%= render "line_values_fields", :f => builder, :line=>builder.object.tanimoto_line, :i=>i %>
             </tr>
         <% end %>
       </table>
